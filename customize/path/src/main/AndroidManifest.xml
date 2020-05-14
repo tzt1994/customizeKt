@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tzt.customize.path">
+
+    <application>
+        <activity android:name=".bezier.BezierActivity"
+            android:label="贝塞尔曲线"/>
+    </application>
+</manifest>

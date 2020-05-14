@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tzt.custom.canvas" >
+
+    <application>
+        <activity android:name="com.tzt.studykt.customView.canvasdraw.CanvasDrawActivity"
+            android:label="绘制基础"/>
+    </application>
+</manifest>

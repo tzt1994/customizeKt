@@ -11,6 +11,14 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/common/basedepency" />
+            <option value="$PROJECT_DIR$/customize/base" />
+            <option value="$PROJECT_DIR$/customize/canvas" />
+            <option value="$PROJECT_DIR$/customize/order" />
+            <option value="$PROJECT_DIR$/customize/paint" />
+            <option value="$PROJECT_DIR$/customize/path" />
+            <option value="$PROJECT_DIR$/customize/propertyanimation" />
+            <option value="$PROJECT_DIR$/customize/transform" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

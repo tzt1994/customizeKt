@@ -1,2 +1,19 @@
 rootProject.name='customizeKt'
 include ':app'
+
+include ':common-basedepency'
+project(':common-basedepency').projectDir = file('common/basedepency')
+include ':customize-base'
+project(':customize-base').projectDir = file('customize/base')
+include ':customize-canvas'
+project(':customize-canvas').projectDir = file('customize/canvas')
+include ':customize-paint'
+project(':customize-paint').projectDir = file('customize/paint')
+include ':customize-propertyanimation'
+project(':customize-propertyanimation').projectDir = file('customize/propertyanimation')
+include ':customize-transform'
+project(':customize-transform').projectDir = file('customize/transform')
+include ':customize-path'
+project(':customize-path').projectDir = file('customize/path')
+include ':customize-order'
+project(':customize-order').projectDir = file('customize/order')

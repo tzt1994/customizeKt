@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tzt.customize.propertyanimation">
+    
+    <application>
+        <activity android:name=".AnimatorActivity"
+            android:label="属性动画"/>
+    </application>
+</manifest>

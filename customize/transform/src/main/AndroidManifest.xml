@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tzt.customize.transform" >
+
+    <application>
+
+        <activity android:name=".ClipTransFormActivity"
+            android:label="裁剪和几何变换"/>
+    </application>
+</manifest>
