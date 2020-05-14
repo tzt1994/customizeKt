@@ -1,4 +1,4 @@
-package com.tzt.customize.paint.inaction
+package com.tzt.customizekt.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,36 +8,43 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tzt.common.basedepency.BaseActivity
+import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.CustomModel
-import com.tzt.customize.paint.R
-import com.tzt.customize.paint.inaction.ui.HeartXfermodeActivity
-import com.tzt.customize.paint.inaction.ui.ScrapingCardXfermodeActivity
-import kotlinx.android.synthetic.main.activity_inaction.*
+import com.tzt.customize.action.ui.HeartXfermodeActivity
+import com.tzt.customize.action.ui.ScrapingCardXfermodeActivity
+import com.tzt.customizekt.R
+import kotlinx.android.synthetic.main.fragment_customize.*
 
 
 /**
- * Description: 实战高级UI效果
+ * Description:
  *
  * @author tangzhentao
- * @since 2020/5/13
+ * @since 2020/5/14
  */
-class InActionActivity: BaseActivity() {
+class ActionFragment: BaseFragment() {
     private val uiList = ArrayList<CustomModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inaction)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_customize, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         uiList.apply {
             add(CustomModel("刮刮卡", "xfermode", ScrapingCardXfermodeActivity::class.java))
             add(CustomModel("心跳", "xfermode", HeartXfermodeActivity::class.java))
         }
 
-        recyclerCustomView.layoutManager = LinearLayoutManager(context).apply {
+        recyclerCustomize.layoutManager = LinearLayoutManager(context).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerCustomView.adapter = UIAdapter()
+        recyclerCustomize.adapter = UIAdapter()
     }
 
     inner class UIAdapter: RecyclerView.Adapter<UIViewHolder>() {
@@ -53,7 +60,7 @@ class InActionActivity: BaseActivity() {
             holder.subTitle.text = model.subTitle
 
             holder.itemView.setOnClickListener {
-                startActivity(Intent(this@InActionActivity, model.clazz))
+                startActivity(Intent(mContext, model.clazz))
             }
         }
 

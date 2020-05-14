@@ -17,3 +17,5 @@ include ':customize-path'
 project(':customize-path').projectDir = file('customize/path')
 include ':customize-order'
 project(':customize-order').projectDir = file('customize/order')
+include ':customize-action'
+project(':customize-action').projectDir = file('customize/action')

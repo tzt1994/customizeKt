@@ -1,4 +1,4 @@
-package com.tzt.customize.paint.inaction.widget
+package com.tzt.customize.action.widget
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.widget.AppCompatImageView
-import com.tzt.customize.paint.R
+import com.tzt.customize.action.R
 
 
 /**

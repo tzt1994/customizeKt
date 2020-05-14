@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common/basedepency" />
+            <option value="$PROJECT_DIR$/customize/action" />
             <option value="$PROJECT_DIR$/customize/base" />
             <option value="$PROJECT_DIR$/customize/canvas" />
             <option value="$PROJECT_DIR$/customize/order" />

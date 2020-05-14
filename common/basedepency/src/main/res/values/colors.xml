@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="statue_bar">#1E90FF</color>
+    <color name="text_1">#333333</color>
+    <color name="text_2">#666666</color>
+    <color name="text_3">#999999</color>
+    <color name="diliver">#f1f1f1</color>
+</resources>

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -7,13 +7,13 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.tzt.customizekt"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -26,13 +26,5 @@ android {
 }
 
 dependencies {
-    implementation project(':common-basedepency')
-    implementation project(':customize-base')
-    implementation project(':customize-canvas')
-    implementation project(':customize-paint')
-    implementation project(':customize-propertyanimation')
-    implementation project(':customize-transform')
-    implementation project(':customize-path')
-    implementation project(':customize-order')
-    implementation project(':customize-action')
+    api project(':common-basedepency')
 }

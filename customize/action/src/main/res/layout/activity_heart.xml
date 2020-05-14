@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tzt.customize.paint.inaction.widget.HeartBeatView
+    <com.tzt.customize.action.widget.HeartBeatView
         android:id="@+id/hbvHeartBeat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

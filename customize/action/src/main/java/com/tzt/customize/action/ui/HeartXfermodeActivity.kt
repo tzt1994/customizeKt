@@ -1,8 +1,8 @@
-package com.tzt.customize.paint.inaction.ui
+package com.tzt.customize.action.ui
 
 import android.os.Bundle
 import com.tzt.common.basedepency.BaseActivity
-import com.tzt.customize.paint.R
+import com.tzt.customize.action.R
 import kotlinx.android.synthetic.main.activity_heart.*
 
 

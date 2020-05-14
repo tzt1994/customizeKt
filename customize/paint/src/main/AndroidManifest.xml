@@ -11,11 +11,5 @@
             android:label="颜色"/>
         <activity android:name=".ui.TextActivity"
             android:label="文字"/>
-        <activity android:name=".inaction.InActionActivity"
-            android:label="高级UI"/>
-        <activity android:name=".inaction.ui.ScrapingCardXfermodeActivity"
-            android:label="刮刮卡 xfermode"/>
-        <activity android:name=".inaction.ui.HeartXfermodeActivity"
-            android:label="心跳 xfermode高级UI"/>
     </application>
 </manifest>

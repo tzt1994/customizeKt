@@ -1,10 +1,10 @@
-package com.tzt.customize.paint.inaction.ui
+package com.tzt.customize.action.ui
 
 import android.os.Bundle
 import android.widget.FrameLayout
 import com.tzt.common.basedepency.BaseActivity
-import com.tzt.customize.paint.R
-import com.tzt.customize.paint.inaction.widget.ScrapingCardView
+import com.tzt.customize.action.R
+import com.tzt.customize.action.widget.ScrapingCardView
 import kotlinx.android.synthetic.main.activity_scraping_card.*
 
 

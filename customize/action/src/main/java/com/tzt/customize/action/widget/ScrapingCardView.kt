@@ -1,4 +1,4 @@
-package com.tzt.customize.paint.inaction.widget
+package com.tzt.customize.action.widget
 
 import android.annotation.SuppressLint
 import android.content.Context

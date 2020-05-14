@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tzt.customize.action">
+
+    <application>
+        <activity android:name=".ui.ScrapingCardXfermodeActivity"
+            android:label="刮刮卡 xfermode"/>
+        <activity android:name=".ui.HeartXfermodeActivity"
+            android:label="心跳 xfermode高级UI"/>
+    </application>
+</manifest>
