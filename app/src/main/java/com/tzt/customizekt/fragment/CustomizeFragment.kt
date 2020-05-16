@@ -18,7 +18,7 @@ import com.tzt.customize.path.bezier.BezierActivity
 import com.tzt.customize.propertyanimation.AnimatorActivity
 import com.tzt.customize.transform.ClipTransFormActivity
 import com.tzt.customizekt.R
-import com.tzt.studykt.customView.canvasdraw.CanvasDrawActivity
+import com.tzt.custom.canvas.CanvasDrawActivity
 import kotlinx.android.synthetic.main.fragment_customize.*
 
 

@@ -1,13 +1,11 @@
 package com.tzt.customizekt
 
-import android.os.Build
-import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.tzt.common.basedepency.base.BaseActivity
 import com.tzt.customizekt.fragment.ActionFragment
 import com.tzt.customizekt.fragment.CustomizeFragment
 import kotlinx.android.synthetic.main.activity_custom.*
@@ -19,16 +17,12 @@ import kotlinx.android.synthetic.main.activity_custom.*
  * @author tangzhentao
  * @since 2020/4/29
  */
-class CustomActivity: AppCompatActivity() {
+class CustomActivity: BaseActivity() {
     private val fragmengList = ArrayList<Fragment>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = resources.getColor(R.color.statue_bar)
-        }
-        setContentView(R.layout.activity_custom)
+    override var layoutResID = R.layout.activity_custom
 
+    override fun initData() {
         tvTitle.text = "UI效果"
 
         fragmengList.apply {
@@ -37,6 +31,9 @@ class CustomActivity: AppCompatActivity() {
         }
 
         customVp.adapter = PageAdapter(supportFragmentManager)
+    }
+
+    override fun bindListener() {
         customVp.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 

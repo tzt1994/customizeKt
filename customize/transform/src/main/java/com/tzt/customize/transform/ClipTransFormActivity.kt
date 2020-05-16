@@ -3,8 +3,9 @@ package com.tzt.customize.transform
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tzt.common.basedepency.BaseActivity
 import com.tzt.common.basedepency.PaintModel
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.transform.fragment.ClipTransFormFragment
 import com.tzt.customize.transform.fragment.TransFormShowFragment
 import kotlinx.android.synthetic.main.activity_clip_transform.*
@@ -19,10 +20,16 @@ import kotlinx.android.synthetic.main.activity_clip_transform.*
 class ClipTransFormActivity: BaseActivity() {
     private var paintModels = ArrayList<PaintModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_clip_transform)
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "裁剪和几何变换"
+        )
+    }
 
+    override var layoutResID = R.layout.activity_clip_transform
+
+    override fun initData() {
         paintModels.apply {
             // 范围裁剪
             val clipFragment = ClipTransFormFragment()

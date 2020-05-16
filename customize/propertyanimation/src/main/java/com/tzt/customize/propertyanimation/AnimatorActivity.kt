@@ -1,10 +1,10 @@
 package com.tzt.customize.propertyanimation
 
-import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tzt.common.basedepency.BaseActivity
 import com.tzt.common.basedepency.PaintModel
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.propertyanimation.fragment.DurationFragment
 import com.tzt.customize.propertyanimation.fragment.InterpolatorFragment
 import com.tzt.customize.propertyanimation.fragment.PropertyValuesHoldersFragment
@@ -22,10 +22,16 @@ import kotlinx.android.synthetic.main.activity_animation.*
 class AnimatorActivity: BaseActivity() {
     private var paintModels = ArrayList<PaintModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_animation)
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "属性动画"
+        )
+    }
 
+    override var layoutResID = R.layout.activity_animation
+
+    override fun initData() {
         paintModels.apply {
             // 绘制文字方式
             add(PaintModel("View.animate()", ViewPropertyFragment()))

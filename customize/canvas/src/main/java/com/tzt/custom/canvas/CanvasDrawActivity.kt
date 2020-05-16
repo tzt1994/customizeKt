@@ -1,13 +1,11 @@
-package com.tzt.studykt.customView.canvasdraw
+package com.tzt.custom.canvas
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tzt.common.basedepency.BaseActivity
 import com.tzt.common.basedepency.CanvasDrawModel
-import com.tzt.custom.canvas.PageFragment
-import com.tzt.custom.canvas.R
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import kotlinx.android.synthetic.main.activity_canvas_draw.*
 
 
@@ -18,13 +16,19 @@ import kotlinx.android.synthetic.main.activity_canvas_draw.*
  * @since 2020/4/26
  */
 class CanvasDrawActivity: BaseActivity() {
+
     private var pageModelList = ArrayList<CanvasDrawModel>()
 
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "drawXXX()"
+        )
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_canvas_draw)
+    override var layoutResID = R.layout.activity_canvas_draw
 
+    override fun initData() {
         pageModelList.apply {
             add(CanvasDrawModel(0, "drawColor()", R.layout.sample_color))
             add(CanvasDrawModel(R.mipmap.sample_circle, "drawCircle()", R.layout.sample_circle))
@@ -40,7 +44,6 @@ class CanvasDrawActivity: BaseActivity() {
         }
 
         viewPage.adapter = PageAdapter(supportFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-
         tabLayout.setupWithViewPager(viewPage)
     }
 

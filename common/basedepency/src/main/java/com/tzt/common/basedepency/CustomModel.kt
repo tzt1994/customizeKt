@@ -2,6 +2,7 @@ package com.tzt.common.basedepency
 
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.tzt.common.basedepency.base.BaseActivity
 
 
 /**

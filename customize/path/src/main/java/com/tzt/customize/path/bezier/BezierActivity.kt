@@ -3,8 +3,9 @@ package com.tzt.customize.path.bezier
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tzt.common.basedepency.BaseActivity
 import com.tzt.common.basedepency.BezierModel
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.path.R
 import com.tzt.customize.path.bezier.fragment.*
 import kotlinx.android.synthetic.main.activity_bezier.*
@@ -19,9 +20,21 @@ import kotlinx.android.synthetic.main.activity_bezier.*
 class BezierActivity: BaseActivity() {
     private var bezierModels = ArrayList<BezierModel>()
 
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "贝塞尔曲线"
+        )
+    }
+
+    override var layoutResID= R.layout.activity_bezier
+
+    override fun initData() {
+        super.initData()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bezier)
 
         bezierModels.apply {
             add(BezierModel(title = "一阶贝塞尔", fragment = OneBezierFragment()))

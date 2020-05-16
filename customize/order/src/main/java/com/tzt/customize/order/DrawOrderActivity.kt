@@ -3,8 +3,9 @@ package com.tzt.customize.order
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tzt.common.basedepency.BaseActivity
 import com.tzt.common.basedepency.PaintModel
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.order.fragment.DrawFragment
 import com.tzt.customize.order.fragment.DrawOrderFragment
 import com.tzt.customize.order.fragment.DrawProcessFragment
@@ -20,10 +21,16 @@ import kotlinx.android.synthetic.main.activity_draw_order.*
 class DrawOrderActivity: BaseActivity() {
     private var paintModels = ArrayList<PaintModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_draw_order)
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "绘制顺序"
+        )
+    }
 
+    override var layoutResID = R.layout.activity_draw_order
+
+    override fun initData() {
         paintModels.apply {
             // super.onDraw()
             val onDrawFragment = DrawOrderFragment()

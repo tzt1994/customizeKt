@@ -3,8 +3,9 @@ package com.tzt.customize.paint.ui
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tzt.common.basedepency.BaseActivity
 import com.tzt.common.basedepency.PaintModel
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.paint.R
 import com.tzt.customize.paint.fragment.effect.PaintEffectFragment
 import com.tzt.customize.paint.fragment.effect.ShadowLayerFragment
@@ -20,10 +21,16 @@ import kotlinx.android.synthetic.main.activity_common.*
 class EffectActivity: BaseActivity() {
     private var paintModels = ArrayList<PaintModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_common)
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "Paint 效果"
+        )
+    }
 
+    override var layoutResID= R.layout.activity_common
+
+    override fun initData() {
         paintModels.apply {
             // 抗锯齿效果
             val antiAliasFragment =

@@ -1,5 +1,6 @@
 package com.tzt.common.basedepency
 
+import androidx.core.graphics.ColorUtils
 import kotlin.math.atan2
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -63,3 +64,10 @@ fun angleByPoint(y: Double, x: Double): Float {
     // x, y点到圆心(角度)的距离
     return (atan2(y, x) * 180 / Math.PI).toFloat()
 }
+
+/**
+ * 是否是亮色
+ * @param color 16进制颜色值
+ * @return true亮色 false暗色
+ */
+fun isLightColor(color: Int) =  ColorUtils.calculateLuminance(color) >= 0.5

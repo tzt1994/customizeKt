@@ -1,7 +1,7 @@
 package com.tzt.customize.action.ui
 
-import android.os.Bundle
-import com.tzt.common.basedepency.BaseActivity
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.action.R
 import kotlinx.android.synthetic.main.activity_heart.*
 
@@ -14,11 +14,21 @@ import kotlinx.android.synthetic.main.activity_heart.*
  */
 class HeartXfermodeActivity: BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_heart)
+    override var layoutResID = R.layout.activity_heart
 
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "心跳(Xfermode)"
+        )
+    }
+
+    override fun initData() {
         hbvHeartBeat.startAnimation()
+    }
+
+    override fun bindListener() {
+
     }
 
     override fun onDestroy() {

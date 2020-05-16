@@ -3,8 +3,9 @@ package com.tzt.customize.paint.ui
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.tzt.common.basedepency.BaseActivity
 import com.tzt.common.basedepency.PaintModel
+import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.paint.R
 import com.tzt.customize.paint.fragment.text.PaintTextFragment
 import kotlinx.android.synthetic.main.activity_common.*
@@ -19,10 +20,16 @@ import kotlinx.android.synthetic.main.activity_common.*
 class TextActivity: BaseActivity() {
     private var paintModels = ArrayList<PaintModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_common)
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "Paint 绘制文字"
+        )
+    }
 
+    override var layoutResID = R.layout.activity_common
+
+    override fun initData() {
         paintModels.apply {
             // 绘制文字方式
             val styleFragment = PaintTextFragment()

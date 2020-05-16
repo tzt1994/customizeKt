@@ -1,7 +1,6 @@
 package com.tzt.customize.paint.ui
 
 import android.graphics.Color
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -11,8 +10,9 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tzt.common.basedepency.BaseActivity
+import com.tzt.common.basedepency.base.BaseActivity
 import com.tzt.common.basedepency.screenWidth
+import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.paint.R
 import com.tzt.customize.paint.data.ColorMatrixMode
 import com.tzt.customize.paint.data.ColorMatrixModel
@@ -29,12 +29,38 @@ import java.lang.Exception
 class ColorMatrixColorFilterActivity: BaseActivity() {
     private val matrixList = ArrayList<ColorMatrixModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_color_matrix)
+    override var layoutResID = R.layout.activity_color_matrix
 
+    override fun getToobarParams(): ToobarParams? {
+        return ToobarParams(
+            createFinisIcon(),
+            title = "颜色过滤"
+        )
+    }
+
+    override fun initData() {
         llImg.layoutParams.height = screenWidth() / 2
 
+        matrixList.apply {
+            add(ColorMatrixModel(ColorMatrixMode.GREY_SCALE))
+            add(ColorMatrixModel(ColorMatrixMode.INVERT))
+            add(ColorMatrixModel(ColorMatrixMode.RGB_TO_BGR))
+            add(ColorMatrixModel(ColorMatrixMode.SEPIA))
+            add(ColorMatrixModel(ColorMatrixMode.BLACK_AND_WHITE))
+            add(ColorMatrixModel(ColorMatrixMode.BRIGHT))
+            add(ColorMatrixModel(ColorMatrixMode.VINTAGE_PINHOLE))
+            add(ColorMatrixModel(ColorMatrixMode.KODACHROME))
+            add(ColorMatrixModel(ColorMatrixMode.TECHNICOLOR))
+            add(ColorMatrixModel(ColorMatrixMode.SATURATION))
+            add(ColorMatrixModel(ColorMatrixMode.NONE, true))
+        }
+        recyclerColorMatrix.layoutManager = LinearLayoutManager(this).apply {
+            orientation = LinearLayoutManager.VERTICAL
+        }
+        recyclerColorMatrix.adapter = ColorMatrixAdapter()
+    }
+
+    override fun bindListener() {
         checkBoxAnimation.setOnCheckedChangeListener { _, isChecked ->
             etDuration.isFocusable = isChecked
             cMatrixView.enableAnimaiton = isChecked
@@ -81,24 +107,6 @@ class ColorMatrixColorFilterActivity: BaseActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
-
-        matrixList.apply {
-            add(ColorMatrixModel(ColorMatrixMode.GREY_SCALE))
-            add(ColorMatrixModel(ColorMatrixMode.INVERT))
-            add(ColorMatrixModel(ColorMatrixMode.RGB_TO_BGR))
-            add(ColorMatrixModel(ColorMatrixMode.SEPIA))
-            add(ColorMatrixModel(ColorMatrixMode.BLACK_AND_WHITE))
-            add(ColorMatrixModel(ColorMatrixMode.BRIGHT))
-            add(ColorMatrixModel(ColorMatrixMode.VINTAGE_PINHOLE))
-            add(ColorMatrixModel(ColorMatrixMode.KODACHROME))
-            add(ColorMatrixModel(ColorMatrixMode.TECHNICOLOR))
-            add(ColorMatrixModel(ColorMatrixMode.SATURATION))
-            add(ColorMatrixModel(ColorMatrixMode.NONE, true))
-        }
-        recyclerColorMatrix.layoutManager = LinearLayoutManager(this).apply {
-            orientation = LinearLayoutManager.VERTICAL
-        }
-        recyclerColorMatrix.adapter = ColorMatrixAdapter()
     }
 
     inner class ColorMatrixAdapter: RecyclerView.Adapter<ColorMatrixAdapter.ColorMatrixViewHolder>() {
