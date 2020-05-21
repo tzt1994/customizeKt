@@ -27,7 +27,9 @@ class BezierActivity: BaseActivity() {
         )
     }
 
-    override var layoutResID= R.layout.activity_bezier
+    override fun layoutResID(): Int {
+        return R.layout.activity_bezier
+    }
 
     override fun initData() {
         super.initData()

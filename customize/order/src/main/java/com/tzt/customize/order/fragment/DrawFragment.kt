@@ -16,16 +16,12 @@ import kotlinx.android.synthetic.main.fragment_draw.*
  * @since 2020/5/12
  */
 class DrawFragment: BaseFragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_draw, container, false)
+
+    override fun layoutResID(): Int {
+        return R.layout.fragment_draw
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         val draw1 = "draw() 是绘制过程的总调度方法。一个 View 的整个绘制过程都发生在 draw() 方法里。前面讲到的背景、主体、子 View " +
                 "、滑动相关以及前景的绘制，它们其实都是在 draw() 方法里的。"
         tvDraw1.text = draw1

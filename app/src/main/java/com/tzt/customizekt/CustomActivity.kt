@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.activity_custom.*
 class CustomActivity: BaseActivity() {
     private val fragmengList = ArrayList<Fragment>()
 
-    override var layoutResID = R.layout.activity_custom
+    override fun layoutResID(): Int {
+        return R.layout.activity_custom
+    }
 
     override fun initData() {
         tvTitle.text = "UI效果"

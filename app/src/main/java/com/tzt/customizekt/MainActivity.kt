@@ -7,7 +7,9 @@ import com.tzt.common.basedepency.widget.ToobarParams
 
 class MainActivity : BaseActivity() {
 
-    override var layoutResID = R.layout.activity_main
+    override fun layoutResID(): Int {
+        return R.layout.activity_main
+    }
 
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(

@@ -14,7 +14,9 @@ import kotlinx.android.synthetic.main.activity_heart.*
  */
 class HeartXfermodeActivity: BaseActivity() {
 
-    override var layoutResID = R.layout.activity_heart
+    override fun layoutResID(): Int {
+        return R.layout.activity_heart
+    }
 
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(

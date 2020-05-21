@@ -29,7 +29,9 @@ import java.lang.Exception
 class ColorMatrixColorFilterActivity: BaseActivity() {
     private val matrixList = ArrayList<ColorMatrixModel>()
 
-    override var layoutResID = R.layout.activity_color_matrix
+    override fun layoutResID(): Int {
+        return R.layout.activity_color_matrix
+    }
 
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(

@@ -40,17 +40,12 @@ class PaintColorFragment : BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_paint_common, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_paint_common
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         val bundle = arguments?.getInt("shader_type", 0)
 
         mList.clear()
@@ -425,7 +420,9 @@ class PaintColorFragment : BaseFragment() {
             orientation = LinearLayoutManager.VERTICAL
         }
         recyclerShader.adapter = ShaderAdapter()
+    }
 
+    override fun bindListener() {
         recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

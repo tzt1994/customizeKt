@@ -28,7 +28,9 @@ class DrawOrderActivity: BaseActivity() {
         )
     }
 
-    override var layoutResID = R.layout.activity_draw_order
+    override fun layoutResID(): Int {
+        return R.layout.activity_draw_order
+    }
 
     override fun initData() {
         paintModels.apply {

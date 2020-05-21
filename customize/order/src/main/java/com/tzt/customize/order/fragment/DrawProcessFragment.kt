@@ -16,16 +16,12 @@ import kotlinx.android.synthetic.main.fragment_draw_process.*
  * @since 2020/5/12
  */
 class DrawProcessFragment: BaseFragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_draw_process, container, false)
+
+    override fun layoutResID(): Int {
+        return R.layout.fragment_draw_process
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         val dp1 = "\n一个完整的绘制过程会依次绘制以下几个内容：\n\n" +
                 "1.背景\n" +
                 "2.主体（onDraw()）\n" +

@@ -1,7 +1,6 @@
 package com.tzt.customizekt.fragment
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ import com.tzt.customize.propertyanimation.AnimatorActivity
 import com.tzt.customize.transform.ClipTransFormActivity
 import com.tzt.customizekt.R
 import com.tzt.custom.canvas.CanvasDrawActivity
+import com.tzt.customize.base.CustomBaseActivity
 import kotlinx.android.synthetic.main.fragment_customize.*
 
 
@@ -31,18 +31,13 @@ import kotlinx.android.synthetic.main.fragment_customize.*
 class CustomizeFragment: BaseFragment() {
     private val pageList = ArrayList<CustomModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_customize, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_customize
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initData() {
         pageList.apply {
+            add(CustomModel("基础", "坐标系，角度弧度，颜色", CustomBaseActivity::class.java))
             add(CustomModel("自定义View", "绘制基础canvas.DrawXXX()", CanvasDrawActivity::class.java))
             add(CustomModel("Paint", "Paint中对颜色的处理\n(基本颜色，ColorFilter，Xfermode)", PaintColorActivity::class.java))
             add(CustomModel("Paint", "Paint中效果详解", EffectActivity::class.java))

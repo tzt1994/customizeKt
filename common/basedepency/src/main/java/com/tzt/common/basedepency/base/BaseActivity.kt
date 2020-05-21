@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.tzt.common.basedepency.ActivityController
@@ -24,8 +23,6 @@ import kotlinx.android.synthetic.main.content.*
  */
 abstract class BaseActivity: AppCompatActivity() {
     lateinit var context: Context
-
-    protected abstract var layoutResID: Int
 
     /**
      * 整个页面, 内容页面, 错误页面，空数据页面，数据页面，标题栏
@@ -72,7 +69,10 @@ abstract class BaseActivity: AppCompatActivity() {
 
         setContentView(allLayout)
 
-        dataLayout.addView(View.inflate(context, layoutResID, null), FrameLayout.LayoutParams(-1, -1))
+        if (layoutResID() > 0) {
+            viewStub.layoutResource = layoutResID()
+            viewStub.inflate()
+        }
 
         initData()
         bindListener()
@@ -104,6 +104,12 @@ abstract class BaseActivity: AppCompatActivity() {
      * @return 默认一致，可以重写返回false展示不一致
      */
     open fun getStatusBarColorSameAsTooBarColor(): Boolean { return true }
+
+    /**
+     * 内容布局
+     * return 布局id Int
+     */
+    protected abstract fun layoutResID(): Int
 
     open fun initData() {}
 

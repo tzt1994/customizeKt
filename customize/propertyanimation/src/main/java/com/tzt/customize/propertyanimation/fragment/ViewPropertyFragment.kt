@@ -1,10 +1,6 @@
 package com.tzt.customize.propertyanimation.fragment
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.tzt.common.basedepency.BaseFragment
 import com.tzt.customize.propertyanimation.R
 import kotlinx.android.synthetic.main.fragment_view_property.*
@@ -17,18 +13,13 @@ import kotlinx.android.synthetic.main.fragment_view_property.*
  * @since 2020/5/8
  */
 class ViewPropertyFragment: BaseFragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_view_property, container, false)
+
+    override fun layoutResID(): Int {
+        return R.layout.fragment_view_property
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun bindListener() {
         btnViewPro.setOnClickListener {
             ivAnimator.animate().apply {
                 translationXBy(500f)

@@ -26,7 +26,9 @@ class CanvasDrawActivity: BaseActivity() {
         )
     }
 
-    override var layoutResID = R.layout.activity_canvas_draw
+    override fun layoutResID(): Int {
+        return R.layout.activity_canvas_draw
+    }
 
     override fun initData() {
         pageModelList.apply {

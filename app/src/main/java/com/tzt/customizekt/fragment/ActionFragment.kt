@@ -1,7 +1,6 @@
 package com.tzt.customizekt.fragment
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,17 +24,11 @@ import kotlinx.android.synthetic.main.fragment_customize.*
 class ActionFragment: BaseFragment() {
     private val uiList = ArrayList<CustomModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_customize, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_customize
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initData() {
         uiList.apply {
             add(CustomModel("刮刮卡", "xfermode", ScrapingCardXfermodeActivity::class.java))
             add(CustomModel("心跳", "xfermode", HeartXfermodeActivity::class.java))

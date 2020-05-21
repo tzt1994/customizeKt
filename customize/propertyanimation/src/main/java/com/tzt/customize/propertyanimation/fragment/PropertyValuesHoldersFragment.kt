@@ -24,24 +24,22 @@ class PropertyValuesHoldersFragment: BaseFragment() {
     private lateinit var holderAnimator: ObjectAnimator
     private var mProgress = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_property_values_holders, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_property_values_holders
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initData() {
         mProgress = seekBarProgress.progress
         tvProgress.text = "进度值：$mProgress"
         holderAnimator = ObjectAnimator.ofPropertyValuesHolder(hpvProgress, getPropertyValuesHolder()).apply {
             duration = 1500
         }
 
+        holderAnimator.start()
+    }
+
+    override fun bindListener() {
         seekBarProgress.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mProgress = progress
@@ -60,8 +58,6 @@ class PropertyValuesHoldersFragment: BaseFragment() {
         btnHAnimate.setOnClickListener {
             holderAnimator.start()
         }
-
-        holderAnimator.start()
     }
 
     fun getPropertyValuesHolder(): PropertyValuesHolder {

@@ -27,7 +27,9 @@ class ClipTransFormActivity: BaseActivity() {
         )
     }
 
-    override var layoutResID = R.layout.activity_clip_transform
+    override fun layoutResID(): Int {
+        return R.layout.activity_clip_transform
+    }
 
     override fun initData() {
         paintModels.apply {

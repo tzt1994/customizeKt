@@ -28,18 +28,12 @@ import kotlinx.android.synthetic.main.fragment_xfermode.*
 class XfermodeFragment : BaseFragment() {
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_xfermode, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_xfermode
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initData() {
         mList.clear()
         tvXfermode.text = "Xfermode\n指的是你要绘制的内容和 Canvas 的目标位置的内容应该怎样结合计算出最终的颜色\n" +
                 "唯一子类 PorterDuffXfermode,构造函数\n" +

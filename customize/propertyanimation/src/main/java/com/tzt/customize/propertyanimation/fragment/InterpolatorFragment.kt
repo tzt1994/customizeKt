@@ -33,18 +33,12 @@ class InterpolatorFragment: BaseFragment() {
 
     private val list = arrayListOf<Interpolator>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_interpolator, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_interpolator
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initData() {
         list.apply {
             add(LinearInterpolator())
             add(AccelerateDecelerateInterpolator())
@@ -72,7 +66,9 @@ class InterpolatorFragment: BaseFragment() {
             interpolator = list[0]
         }
         btnInterpolator.text = animator.interpolator.javaClass.simpleName
+    }
 
+    override fun bindListener() {
         btnAnimate.setOnClickListener {
             animator.start()
         }

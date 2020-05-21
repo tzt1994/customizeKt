@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tzt.customize.base" />
+    package="com.tzt.customize.base" >
+
+    <application>
+        <activity android:name=".CustomBaseActivity"
+            android:label="自定义View基础"/>
+    </application>
+</manifest>

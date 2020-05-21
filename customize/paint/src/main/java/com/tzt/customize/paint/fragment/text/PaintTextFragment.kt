@@ -36,17 +36,12 @@ class PaintTextFragment: BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_paint_common, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_paint_common
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         val effect = arguments?.getInt("text_type", -1)
         titleTv.visibility = View.GONE
         mList.clear()

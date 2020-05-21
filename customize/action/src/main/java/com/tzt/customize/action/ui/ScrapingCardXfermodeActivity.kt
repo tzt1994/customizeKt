@@ -29,7 +29,9 @@ class ScrapingCardXfermodeActivity: BaseActivity() {
         )
     }
 
-    override var layoutResID = R.layout.activity_scraping_card
+    override fun layoutResID(): Int {
+        return R.layout.activity_scraping_card
+    }
 
     override fun initData() {
         val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)

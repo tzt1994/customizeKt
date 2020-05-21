@@ -25,17 +25,12 @@ class TypeEvaluatorFragment: BaseFragment() {
     private lateinit var colorCustomAnimator: ObjectAnimator
     private lateinit var pointAnimator: ObjectAnimator
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_type_evaluator, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_type_evaluator
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         colorSystemAnimator = ObjectAnimator.ofArgb(cpvSystem, "color", Color.parseColor("#ffff0000"), Color.parseColor("#ff00ff00")).apply {
             duration = 2000
         }
@@ -46,6 +41,9 @@ class TypeEvaluatorFragment: BaseFragment() {
             duration = 2000
         }
 
+    }
+
+    override fun bindListener() {
         btnAnimate.setOnClickListener {
             colorSystemAnimator.start()
             colorCustomAnimator.start()

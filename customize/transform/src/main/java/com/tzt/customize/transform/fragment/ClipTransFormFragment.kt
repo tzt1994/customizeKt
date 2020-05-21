@@ -37,17 +37,13 @@ class ClipTransFormFragment: BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_clip_transform, container, false)
+
+    override fun layoutResID(): Int {
+        return R.layout.fragment_clip_transform
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         val effect = arguments?.getInt("clip_transform_type", -1)
         titleTv.visibility = View.GONE
         mList.clear()
@@ -138,7 +134,9 @@ class ClipTransFormFragment: BaseFragment() {
             orientation = LinearLayoutManager.VERTICAL
         }
         recyclerShader.adapter = EffectAdapter()
+    }
 
+    override fun bindListener() {
         recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

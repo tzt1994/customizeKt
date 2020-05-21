@@ -28,7 +28,9 @@ class EffectActivity: BaseActivity() {
         )
     }
 
-    override var layoutResID= R.layout.activity_common
+    override fun layoutResID(): Int {
+        return R.layout.activity_common
+    }
 
     override fun initData() {
         paintModels.apply {

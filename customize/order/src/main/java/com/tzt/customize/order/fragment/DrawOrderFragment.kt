@@ -35,17 +35,12 @@ class DrawOrderFragment: BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_draw_order, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_draw_order
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         val effect = arguments?.getInt("draw_order_type", -1)
         titleTv.visibility = View.GONE
         mList.clear()
@@ -89,26 +84,26 @@ class DrawOrderFragment: BaseFragment() {
                                 "与重写 onDraw() 并把绘制代码写在 super.onDraw()下面 ，显示效果是一致的\n", null))
                     }
                 }
-            ONDRAW_FOREGROUND -> {
-                // onDrawForeground()
-                mList.apply {
-                    add(PaintItemModel("这个方法是 API 23 才引入的，所以在重写这个方法的时候要确认你的 minSdk 达到了 23，不然低版本的手机装上你的软件会没有效果。\n" +
-                            "在 onDrawForeground() 中，会依次绘制滑动边缘渐变、滑动条和前景。\n" +
-                            "这三部分是依次绘制的，但它们被一起写进了 onDrawForeground() 方法里，\n" +
-                            "所以绘制内容只能放在这三部分上面或者下面，在他们之间插入绘制，是做不到的", null))
-                    val below = OnDrawForegeoundBelowView(mContext)
-                    below.setImageResource(R.mipmap.batman)
-                    below.foreground = ColorDrawable(Color.parseColor("#88000000"))
-                    add(PaintItemModel("绘制内容代码在 super.onDrawForeground() 的下面\n" +
-                            "绘制内容会盖住滑动边缘渐变、滑动条以及前景", below))
-                    val above = OnDrawForegroundAboveView(mContext)
-                    above.setImageResource(R.mipmap.batman)
-                    above.foreground = ColorDrawable(Color.parseColor("#88000000"))
-                    add(PaintItemModel("绘制内容代码在 super.onDrawForeground() 的上面\n" +
-                            "绘制内容会盖住子 View，但被滑动边缘渐变、滑动条以及前景盖住", above))
+                ONDRAW_FOREGROUND -> {
+                    // onDrawForeground()
+                    mList.apply {
+                        add(PaintItemModel("这个方法是 API 23 才引入的，所以在重写这个方法的时候要确认你的 minSdk 达到了 23，不然低版本的手机装上你的软件会没有效果。\n" +
+                                "在 onDrawForeground() 中，会依次绘制滑动边缘渐变、滑动条和前景。\n" +
+                                "这三部分是依次绘制的，但它们被一起写进了 onDrawForeground() 方法里，\n" +
+                                "所以绘制内容只能放在这三部分上面或者下面，在他们之间插入绘制，是做不到的", null))
+                        val below = OnDrawForegeoundBelowView(mContext)
+                        below.setImageResource(R.mipmap.batman)
+                        below.foreground = ColorDrawable(Color.parseColor("#88000000"))
+                        add(PaintItemModel("绘制内容代码在 super.onDrawForeground() 的下面\n" +
+                                "绘制内容会盖住滑动边缘渐变、滑动条以及前景", below))
+                        val above = OnDrawForegroundAboveView(mContext)
+                        above.setImageResource(R.mipmap.batman)
+                        above.foreground = ColorDrawable(Color.parseColor("#88000000"))
+                        add(PaintItemModel("绘制内容代码在 super.onDrawForeground() 的上面\n" +
+                                "绘制内容会盖住子 View，但被滑动边缘渐变、滑动条以及前景盖住", above))
+                    }
                 }
-            }
-            else -> {}
+                else -> {}
             }
         }
 

@@ -21,20 +21,17 @@ import kotlinx.android.synthetic.main.fragment_duration.*
 class DurationFragment: BaseFragment() {
     private lateinit var animator: ObjectAnimator
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_duration, container, false)
+    override fun layoutResID(): Int {
+        return R.layout.fragment_duration
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initData() {
         animator = ObjectAnimator.ofFloat(ivDuration, "rotation", 0f, 360f)
         tvProgress.text = seekbarDuration.progress.toString()
+    }
+
+    override fun bindListener() {
         seekbarDuration.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 tvProgress.text = progress.toString()

@@ -20,5 +20,7 @@ data class BezierModel(val title: String, val fragment: Fragment)
 
 data class PaintModel(val title: String, val fragment: Fragment)
 
+data class BaseModel(val title: String, val fragment: Fragment)
+
 // paint数据类
 data class PaintItemModel(val title: String, val view: View? = null)
