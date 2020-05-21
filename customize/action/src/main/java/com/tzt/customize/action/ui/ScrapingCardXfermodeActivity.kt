@@ -1,6 +1,7 @@
 package com.tzt.customize.action.ui
 
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.tzt.common.basedepency.base.BaseActivity
 import com.tzt.common.basedepency.widget.ToobarParams
 import com.tzt.customize.action.R
@@ -20,7 +21,11 @@ class ScrapingCardXfermodeActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            title = "刮刮卡(Xfermode)"
+            "刮刮卡.Xfermode",
+            createFinisIcon(),
+            createCodeIcon {
+                Toast.makeText(context, "点击了code", Toast.LENGTH_SHORT).show()
+            }
         )
     }
 

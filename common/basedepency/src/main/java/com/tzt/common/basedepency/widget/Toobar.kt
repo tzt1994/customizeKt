@@ -7,7 +7,9 @@ import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
+import com.tzt.common.basedepency.R
 
 
 /**
@@ -16,14 +18,26 @@ import android.widget.TextView
  * @author tangzhentao
  * @since 2020/5/15
  */
-class Toobar : LinearLayout, View.OnClickListener{
+class Toobar : RelativeLayout, View.OnClickListener {
+    /**
+     * 图片宽度为 3/4的标题高度
+     */
+
     var mHeight: Int = 0
+        set(value) {
+            field = value
+            titleTv.setPadding(mHeight / 4, 0,mHeight / 4,0)
+        }
+
+    private var title: String = ""
+
+    private val lefts = ArrayList<TooBarAction>()
 
     // 标题
     private lateinit var titleTv: TextView
     // 左右布局
     private lateinit var leftLayout: LinearLayout
-    private lateinit var rightLayout: LinearLayout
+    private lateinit var rightLayout: RelativeLayout
 
     constructor(context: Context?): this(context, null, 0)
 
@@ -34,16 +48,17 @@ class Toobar : LinearLayout, View.OnClickListener{
     }
 
     private fun initView() {
-        orientation = HORIZONTAL
 
         // 左边布局
-        val leftParams = LayoutParams(0, -1)
-        leftParams.weight = 1f
+        val leftParams = LayoutParams(-2, -1)
+        leftParams.addRule(ALIGN_PARENT_LEFT, TRUE)
         leftLayout = LinearLayout(context)
+        leftLayout.id = R.id.toobarLeftLayout
         addView(leftLayout, leftParams)
 
         // 标题
         val titleParams = LayoutParams(-2, -1)
+        titleParams.addRule(RIGHT_OF, leftLayout.id)
         titleTv = TextView(context)
         titleTv.text = "标题"
         titleTv.setTextColor(Color.WHITE)
@@ -51,21 +66,18 @@ class Toobar : LinearLayout, View.OnClickListener{
         titleTv.textSize = 20f
         addView(titleTv, titleParams)
 
-        // 右边布局
-        val rightParams = LayoutParams(0, -1)
-        rightParams.weight = 1f
-        rightLayout = LinearLayout(context)
-        // 用来占据剩余空间
-        val nullParams = LayoutParams(0, -1)
-        nullParams.weight = 1f
-        rightLayout.addView(LinearLayout(context), nullParams)
-        addView(rightLayout, leftParams)
+//        // 右边布局
+//        val rightParams = LayoutParams(-2, -1)
+//        rightParams.addRule(ALIGN_PARENT_RIGHT, TRUE)
+//        rightLayout = RelativeLayout(context)
+//        addView(rightLayout, leftParams)
     }
 
     /**
      * 设置标题
      */
     fun setTitle(title: String) {
+        this.title = title
         titleTv.text = title
     }
 
@@ -74,21 +86,15 @@ class Toobar : LinearLayout, View.OnClickListener{
      */
     fun addLeftAction(actions: ArrayList<TooBarAction>) {
         if (actions.size > 0) {
+            lefts.addAll(actions)
             for (action in actions) {
-                val params = LayoutParams(mHeight, mHeight)
-                if (action.getView() != null) {
-                    val view = action.getView()
-                    view?.tag = action
-                    view?.setOnClickListener(this)
 
-                    leftLayout.addView(action.getView(), params)
-                }
-
+                val params = LayoutParams(mHeight / 4 * 3, mHeight)
                 if (action.getImageResource() > 0) {
                     val imageView = ImageView(context)
                     imageView.scaleType = ImageView.ScaleType.FIT_XY
                     imageView.setImageResource(action.getImageResource())
-                    imageView.setPadding(mHeight / 4, mHeight / 4,mHeight / 4,mHeight / 4)
+                    imageView.setPadding(mHeight / 4, mHeight / 4,0,mHeight / 4)
                     imageView.tag = action
                     imageView.setOnClickListener(this)
 
@@ -98,27 +104,28 @@ class Toobar : LinearLayout, View.OnClickListener{
         }
     }
 
+    /**
+     * 添加右边布局
+     */
     fun addRightAction(actions: ArrayList<TooBarAction>) {
         if (actions.size > 0) {
-            for (action in actions) {
-                val params = LayoutParams(mHeight, mHeight)
-                if (action.getView() != null) {
-                    val view = action.getView()
-                    view?.tag = action
-                    view?.setOnClickListener(this)
+            val size = mHeight / 4 * 3
 
-                    rightLayout.addView(action.getView(), params)
-                }
+            for ( (index, action) in actions.withIndex()) {
 
                 if (action.getImageResource() > 0) {
+                    val params = LayoutParams(size, mHeight)
+                    // 位于父控件右边
+                    params.addRule(ALIGN_PARENT_RIGHT, TRUE)
+                    params.rightMargin = index * size
                     val imageView = ImageView(context)
                     imageView.scaleType = ImageView.ScaleType.FIT_XY
                     imageView.setImageResource(action.getImageResource())
-                    imageView.setPadding(mHeight / 4, mHeight / 4,mHeight / 4,mHeight / 4)
+                    imageView.setPadding(0, mHeight / 4,mHeight / 4,mHeight / 4)
                     imageView.tag = action
                     imageView.setOnClickListener(this)
 
-                    rightLayout.addView(imageView, params)
+                    addView(imageView, params)
                 }
             }
         }
@@ -136,7 +143,6 @@ class Toobar : LinearLayout, View.OnClickListener{
     }
 
     abstract class TooBarAction{
-        open fun getView(): View? { return  null }
         open fun getImageResource(): Int {return  0}
         abstract fun click(view: View)
     }

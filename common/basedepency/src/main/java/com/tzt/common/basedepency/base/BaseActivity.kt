@@ -47,7 +47,7 @@ abstract class BaseActivity: AppCompatActivity() {
         if (getStatusBarColorSameAsTooBarColor()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 //设置状态栏颜色
-                val color = toobarParams?.bgColor ?: Color.parseColor("#1E90FF")
+                val color = toobarParams?.backgroundColor ?: Color.parseColor("#1E90FF")
 
                 window.statusBarColor = color
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -60,8 +60,8 @@ abstract class BaseActivity: AppCompatActivity() {
 
         if (toobarParams != null) {
             toobar = Toobar(context)
-            toobar.setBackgroundColor(toobarParams.bgColor)
-            val params = LinearLayout.LayoutParams(-1, toobarParams.titleHeight)
+            toobar.setBackgroundColor(toobarParams.backgroundColor)
+            val params = LinearLayout.LayoutParams(-1, toobarParams.toobarHeight)
             allLayout.addView(toobar, params)
         }
 
@@ -88,7 +88,7 @@ abstract class BaseActivity: AppCompatActivity() {
      */
     private fun updateTitleBar() {
         val  toobarParams = getToobarParams() ?: return
-        toobar.mHeight = toobarParams.titleHeight
+        toobar.mHeight = toobarParams.toobarHeight
         toobar.setTitle(toobarParams.title)
         toobar.addLeftAction(toobarParams.leftActions)
         toobar.addRightAction(toobarParams.rightActions)
@@ -133,7 +133,7 @@ abstract class BaseActivity: AppCompatActivity() {
     }
 
     /**
-     * 返回返回箭头
+     * 返回箭头
      * return Toobar.TooBarAction
      */
     fun createFinisIcon(): Toobar.TooBarAction {
@@ -142,6 +142,20 @@ abstract class BaseActivity: AppCompatActivity() {
 
             override fun click(view: View) {
                 finish()
+            }
+        }
+    }
+
+    /**
+     * 源码图片
+     * return Toobar.TooBarAction
+     */
+    fun createCodeIcon(clickListener: (view: View) -> Unit): Toobar.TooBarAction {
+        return object :Toobar.TooBarAction() {
+            override fun getImageResource() = R.mipmap.code
+
+            override fun click(view: View) {
+                clickListener(view)
             }
         }
     }

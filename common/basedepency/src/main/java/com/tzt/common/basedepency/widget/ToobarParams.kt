@@ -11,39 +11,71 @@ import com.tzt.common.basedepency.dpToPx
  * @since 2020/5/15
  */
 class ToobarParams {
+
+    companion object {
+        private val defaultColor = Color.parseColor("#1E90FF")
+    }
+
     //标题栏背景颜色
-    var bgColor = Color.parseColor("#1E90FF")
+    var backgroundColor: Int = defaultColor
 
     //标题栏高度
-    var titleHeight: Int = dpToPx(48).toInt()
+    var toobarHeight: Int = 0
 
-    //标题栏左边的内容
+    //标题栏昨天布局可以添加多个
     val leftActions = ArrayList<Toobar.TooBarAction>()
 
 
     //标题栏标题
     var title: String
 
-    //鼻涕蓝右边内容 可添加多个
+    //标题栏右边布局 可添加多个
     val rightActions =  ArrayList<Toobar.TooBarAction>()
 
-    constructor(vararg leftAc: Toobar.TooBarAction, title: String) {
-        leftActions.addAll(leftAc)
+    /**
+     *
+     * 添加多个左边可以多次调用ToobarParams.leftActions.add()
+     */
+
+    /**
+     * 默认一个左边添加多个右边内容
+     */
+    constructor(left: Toobar.TooBarAction, title: String, vararg rights: Toobar.TooBarAction, bgColor: Int = defaultColor, titleHeight: Int = dpToPx(48).toInt()) {
         this.title = title
+        this.backgroundColor = bgColor
+        this.toobarHeight = titleHeight
+        leftActions.add(left)
+        rightActions.addAll(rights)
     }
 
-    constructor(title: String, vararg rightAc: Toobar.TooBarAction) {
+    /**
+     * 默认一个左边添加一个右边
+     */
+    constructor(left: Toobar.TooBarAction, title: String, right: Toobar.TooBarAction, bgColor: Int = defaultColor, titleHeight: Int = dpToPx(48).toInt()) {
         this.title = title
-        rightActions.addAll(rightAc)
+        this.backgroundColor = bgColor
+        this.toobarHeight = titleHeight
+        leftActions.add(left)
+        rightActions.add(right)
     }
 
-    constructor(
-        leftAc: Toobar.TooBarAction,
-        title: String,
-        right: Toobar.TooBarAction
-    ) {
-        leftActions.add(leftAc)
+    /**
+     * 无左边添加多个右边内容
+     */
+    constructor(title: String, vararg rights: Toobar.TooBarAction, bgColor: Int = defaultColor, titleHeight: Int = dpToPx(48).toInt()) {
         this.title = title
+        this.backgroundColor = bgColor
+        this.toobarHeight = titleHeight
+        rightActions.addAll(rights)
+    }
+
+    /**
+     * 无左边添加一个右边
+     */
+    constructor(title: String, right: Toobar.TooBarAction, bgColor: Int = defaultColor, titleHeight: Int = dpToPx(48).toInt()) {
+        this.title = title
+        this.backgroundColor = bgColor
+        this.toobarHeight = titleHeight
         rightActions.add(right)
     }
 }
