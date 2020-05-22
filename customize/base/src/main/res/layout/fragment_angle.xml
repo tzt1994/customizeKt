@@ -12,7 +12,7 @@
         android:paddingRight="15dp">
 
         <TextView
-            android:id="@+id/tvCoordinate"
+            android:id="@+id/tvDescrip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -21,7 +21,24 @@
             android:layout_marginTop="30dp"/>
 
         <TextView
-            android:id="@+id/tvSubCoordinate"
+            android:id="@+id/tvSubDescrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/tvDefinition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/tvSubDefinition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -33,11 +50,19 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:src="@mipmap/coordinate"
+            android:src="@mipmap/angle"
+            android:layout_marginTop="15dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:src="@mipmap/raidan"
             android:layout_marginTop="15dp"/>
 
         <TextView
-            android:id="@+id/tvViewCoordinate"
+            android:id="@+id/tvConversion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -46,7 +71,7 @@
             android:layout_marginTop="30dp"/>
 
         <TextView
-            android:id="@+id/tvSubViewCoordinate"
+            android:id="@+id/tvSubConversion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -58,11 +83,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:src="@mipmap/view_coordinate"
+            android:src="@mipmap/conversion"
             android:layout_marginTop="15dp"/>
 
         <TextView
-            android:id="@+id/tvRaW"
+            android:id="@+id/tvDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -71,36 +96,19 @@
             android:layout_marginTop="30dp"/>
 
         <TextView
-            android:id="@+id/tvSubRaw"
+            android:id="@+id/tvSubDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/text_2"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:src="@mipmap/raw"
-            android:layout_marginTop="15dp"/>
-
-        <TextView
-            android:id="@+id/tvImportant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_1"
-            android:layout_marginTop="30dp"/>
-
-        <TextView
-            android:id="@+id/tvSubImportant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/text_2"
+            android:src="@mipmap/detail"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"/>
     </LinearLayout>

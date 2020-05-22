@@ -5,6 +5,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.tzt.common.basedepency.BaseModel
 import com.tzt.common.basedepency.base.BaseActivity
 import com.tzt.common.basedepency.widget.ToobarParams
+import com.tzt.customize.base.fragment.AngleFragment
+import com.tzt.customize.base.fragment.ColorFragment
 import com.tzt.customize.base.fragment.CoordinateFragment
 import kotlinx.android.synthetic.main.activity_custom_base.*
 
@@ -32,8 +34,8 @@ class CustomBaseActivity: BaseActivity() {
     override fun initData() {
         modelList.apply {
             add(BaseModel("坐标系", CoordinateFragment()))
-            add(BaseModel("角度弧度", CoordinateFragment()))
-            add(BaseModel("颜色", CoordinateFragment()))
+            add(BaseModel("角度弧度", AngleFragment()))
+            add(BaseModel("颜色", ColorFragment()))
         }
 
         vpBase.adapter = BaseAdapter(supportFragmentManager)
