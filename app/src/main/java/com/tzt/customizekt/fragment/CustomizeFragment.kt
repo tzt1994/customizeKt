@@ -18,6 +18,7 @@ import com.tzt.customize.propertyanimation.AnimatorActivity
 import com.tzt.customize.transform.ClipTransFormActivity
 import com.tzt.customizekt.R
 import com.tzt.custom.canvas.CanvasDrawActivity
+import com.tzt.customize.base.ClassicProcessActivity
 import com.tzt.customize.base.CustomBaseActivity
 import kotlinx.android.synthetic.main.fragment_customize.*
 
@@ -38,6 +39,7 @@ class CustomizeFragment: BaseFragment() {
     override fun initData() {
         pageList.apply {
             add(CustomModel("基础", "坐标系，角度弧度，颜色", CustomBaseActivity::class.java))
+            add(CustomModel("分类与流程", "自定义view的分类，以及函数调用链", ClassicProcessActivity::class.java))
             add(CustomModel("自定义View", "绘制基础canvas.DrawXXX()", CanvasDrawActivity::class.java))
             add(CustomModel("Paint", "Paint中对颜色的处理\n(基本颜色，ColorFilter，Xfermode)", PaintColorActivity::class.java))
             add(CustomModel("Paint", "Paint中效果详解", EffectActivity::class.java))

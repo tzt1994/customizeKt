@@ -4,5 +4,7 @@
     <application>
         <activity android:name=".CustomBaseActivity"
             android:label="自定义View基础"/>
+        <activity android:name=".ClassicProcessActivity"
+            android:label="分类与流程"/>
     </application>
 </manifest>
