@@ -1,6 +1,8 @@
 package com.tzt.customize.paint.ui
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -36,7 +38,10 @@ class ColorMatrixColorFilterActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            title = "颜色过滤"
+            "颜色过滤",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/chengdazhi/StyleImageView")))
+            }
         )
     }
 

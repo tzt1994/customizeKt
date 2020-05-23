@@ -1,5 +1,7 @@
 package com.tzt.customize.paint.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -26,7 +28,10 @@ class PaintColorActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            title = "Paint 颜色的处理"
+            "Paint 颜色的处理",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-2/")))
+            }
         )
     }
 
@@ -36,31 +41,27 @@ class PaintColorActivity: BaseActivity() {
 
     override fun initData() {
         bezierModels.apply {
-            add(PaintModel(title = "颜色Color", fragment = ColorFragment()))
+            add(PaintModel("颜色Color", ColorFragment()))
             // 常用的shader
-            val baseShaderFragment =
-                PaintColorFragment()
+            val baseShaderFragment = PaintColorFragment()
             val baseBundle = Bundle()
             baseBundle.putInt("shader_type", PaintColorFragment.SHADER_TYPE_BASE)
             baseShaderFragment.arguments = baseBundle
             add(PaintModel("着色器shader", baseShaderFragment))
             // 图片着色器
-            val bitmapShaderFragment =
-                PaintColorFragment()
+            val bitmapShaderFragment = PaintColorFragment()
             val bitmapBundle = Bundle()
             bitmapBundle.putInt("shader_type", PaintColorFragment.SHADER_TYPE_BITMAP)
             bitmapShaderFragment.arguments = bitmapBundle
-            add(PaintModel("BitmapShader", fragment = bitmapShaderFragment))
+            add(PaintModel("BitmapShader", bitmapShaderFragment))
             // 混合着色器
-            val comShaderFragment =
-                PaintColorFragment()
+            val comShaderFragment = PaintColorFragment()
             val comBundle = Bundle()
             comBundle.putInt("shader_type", PaintColorFragment.SHADER_TYPE_COMPOSE)
             comShaderFragment.arguments = comBundle
             add(PaintModel(title = "ComposeShader", fragment = comShaderFragment))
             // 颜色过滤器
-            val colorFilterFragment =
-                PaintColorFragment()
+            val colorFilterFragment = PaintColorFragment()
             val colorFilterBundle = Bundle()
             colorFilterBundle.putInt("shader_type", PaintColorFragment.COLOR_FILTER)
             colorFilterFragment.arguments = colorFilterBundle

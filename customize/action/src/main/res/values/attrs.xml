@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 风扇叶子loading -->
+    <declare-styleable name="LeafLoadingLayout">
+        <attr name="lll_bg_color" format="color|reference"/>
+        <attr name="lll_progress_color" format="color|reference"/>
+        <attr name="lll_fan_bg_color" format="color|reference"/>
+        <attr name="lll_fan_border_color" format="color|reference"/>
+        <attr name="lll_fan_border_width" format="float|reference|dimension"/>
+        <attr name="lll_fan_text_color" format="color|reference"/>
+        <attr name="lll_fan_text_size" format="float|reference|dimension"/>
+    </declare-styleable>
+</resources>

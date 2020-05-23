@@ -1,6 +1,7 @@
 package com.tzt.customize.path.bezier
 
-import android.os.Bundle
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tzt.common.basedepency.BezierModel
@@ -23,7 +24,10 @@ class BezierActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            title = "贝塞尔曲线"
+            "贝塞尔曲线",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://juejin.im/post/5c3988516fb9a049d1325c83")))
+            }
         )
     }
 
@@ -32,12 +36,6 @@ class BezierActivity: BaseActivity() {
     }
 
     override fun initData() {
-        super.initData()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         bezierModels.apply {
             add(BezierModel(title = "一阶贝塞尔", fragment = OneBezierFragment()))
             add(BezierModel(title = "二阶贝塞尔", fragment = TwoBezierFragment()))

@@ -1,5 +1,7 @@
 package com.tzt.customize.order
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -24,7 +26,10 @@ class DrawOrderActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            title = "绘制顺序"
+            "绘制顺序",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-5/")))
+            }
         )
     }
 

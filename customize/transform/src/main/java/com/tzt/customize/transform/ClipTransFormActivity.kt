@@ -1,5 +1,7 @@
 package com.tzt.customize.transform
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -23,7 +25,10 @@ class ClipTransFormActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            title = "裁剪和几何变换"
+            "裁剪和几何变换",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-4/")))
+            }
         )
     }
 

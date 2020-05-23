@@ -3,7 +3,6 @@ package com.tzt.customize.paint.fragment.color
 import android.annotation.SuppressLint
 import android.graphics.PorterDuff
 import android.graphics.Shader
-import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View

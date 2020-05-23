@@ -1,5 +1,7 @@
 package com.tzt.customize.base
 
+import android.content.Intent
+import android.net.Uri
 import com.tzt.common.basedepency.base.BaseActivity
 import com.tzt.common.basedepency.widget.ToobarParams
 import kotlinx.android.synthetic.main.activity_classic_process.*
@@ -16,7 +18,10 @@ class ClassicProcessActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            "分类与流程"
+            "分类与流程",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.gcssloop.com/customview/CustomViewProcess")))
+            }
         )
     }
 

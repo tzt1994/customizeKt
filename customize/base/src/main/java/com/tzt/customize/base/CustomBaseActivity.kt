@@ -1,5 +1,7 @@
 package com.tzt.customize.base
 
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.tzt.common.basedepency.BaseModel
@@ -27,7 +29,17 @@ class CustomBaseActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            "自定义View基础"
+            "自定义View基础",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
+                    when (modelList[vpBase.currentItem].fragment) {
+                        is CoordinateFragment -> "http://www.gcssloop.com/customview/CoordinateSystem"
+                        is AngleFragment -> "http://www.gcssloop.com/customview/AngleAndRadian"
+                        is ColorFragment -> "http://www.gcssloop.com/customview/Color"
+                        else -> ""
+                    }
+                )))
+            }
         )
     }
 

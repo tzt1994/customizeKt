@@ -28,7 +28,7 @@ abstract class BaseActivity: AppCompatActivity() {
      * 整个页面, 内容页面, 错误页面，空数据页面，数据页面，标题栏
      */
     private lateinit var allLayout: LinearLayout
-    private lateinit var toobar: Toobar
+    protected lateinit var toobar: Toobar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,10 +74,10 @@ abstract class BaseActivity: AppCompatActivity() {
             viewStub.inflate()
         }
 
+        updateTitleBar()
+
         initData()
         bindListener()
-
-        updateTitleBar()
         showPage(PageState.DATA)
 
         ActivityController.addActivity(this)
@@ -153,7 +153,21 @@ abstract class BaseActivity: AppCompatActivity() {
     }
 
     /**
-     * 源码图片
+     * 原创文章
+     * return Toobar.TooBarAction
+     */
+    fun createOriginalIcon(clickListener: (view: View) -> Unit): Toobar.TooBarAction {
+        return object :Toobar.TooBarAction() {
+            override fun getImageResource() = R.mipmap.original
+
+            override fun click(view: View) {
+                clickListener(view)
+            }
+        }
+    }
+
+    /**
+     * 源码show
      * return Toobar.TooBarAction
      */
     fun createCodeIcon(clickListener: (view: View) -> Unit): Toobar.TooBarAction {

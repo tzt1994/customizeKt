@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.CustomModel
 import com.tzt.customize.action.ui.HeartXfermodeActivity
+import com.tzt.customize.action.ui.LeafLoadingActivity
 import com.tzt.customize.action.ui.ScrapingCardXfermodeActivity
 import com.tzt.customizekt.R
 import kotlinx.android.synthetic.main.fragment_customize.*
@@ -32,6 +33,7 @@ class ActionFragment: BaseFragment() {
         uiList.apply {
             add(CustomModel("刮刮卡", "xfermode", ScrapingCardXfermodeActivity::class.java))
             add(CustomModel("心跳", "xfermode", HeartXfermodeActivity::class.java))
+            add(CustomModel("LeafLoading", "风扇叶子loading效果", LeafLoadingActivity::class.java))
         }
 
         recyclerCustomize.layoutManager = LinearLayoutManager(context).apply {

@@ -1,5 +1,7 @@
 package com.tzt.customize.propertyanimation
 
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tzt.common.basedepency.PaintModel
@@ -25,7 +27,10 @@ class AnimatorActivity: BaseActivity() {
     override fun getToobarParams(): ToobarParams? {
         return ToobarParams(
             createFinisIcon(),
-            title = "属性动画"
+            "属性动画",
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-6/")))
+            }
         )
     }
 

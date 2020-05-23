@@ -6,5 +6,7 @@
             android:label="刮刮卡 xfermode"/>
         <activity android:name=".ui.HeartXfermodeActivity"
             android:label="心跳 xfermode高级UI"/>
+        <activity android:name=".ui.LeafLoadingActivity"
+            android:label="LeafLoading"/>
     </application>
 </manifest>

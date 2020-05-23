@@ -1,5 +1,7 @@
 package com.tzt.customize.action.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.tzt.common.basedepency.base.BaseActivity
@@ -22,9 +24,9 @@ class ScrapingCardXfermodeActivity: BaseActivity() {
         return ToobarParams(
             createFinisIcon(),
             "刮刮卡.Xfermode",
-            createFinisIcon(),
-            createCodeIcon {
-                Toast.makeText(context, "点击了code", Toast.LENGTH_SHORT).show()
+            createOriginalIcon {
+                startActivity(Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://juejin.im/post/5c6c20556fb9a04a0e2dc490#heading-25")))
             }
         )
     }
