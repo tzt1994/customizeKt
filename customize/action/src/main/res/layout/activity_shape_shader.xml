@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/text_2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fixXY"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivFitXY"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fitCenter"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivFitCenter"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/batman"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fitEnd"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivFitEND1"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="fitEnd"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivFitEND2"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="fitEnd"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fitStart"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivFitStart1"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="fitStart"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivFitStart2"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="fitStart"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="matrix"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivMartix"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="matrix"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="center"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCenter"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="center"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="centerCrop"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCenterCrop"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="centerCrop"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="centerInside"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp" />
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCenterInside"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            android:scaleType="centerInside"
+            app:shiv_bg_color="@color/status_bar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="各个角度"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp" />
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCorner1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            app:shiv_top_right="false"
+            app:shiv_bottom_left="false"
+            app:shiv_radius_y="40dp"
+            app:shiv_radius_x="40dp"
+            android:layout_marginBottom="10dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCorner2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            app:shiv_top_left="false"
+            app:shiv_top_right="false"
+            app:shiv_bottom_right="false"
+            app:shiv_radius_x="30dp"
+            app:shiv_radius_y="30dp"
+            android:layout_marginBottom="10dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCorner3"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            app:shiv_radius_x="10dp"
+            app:shiv_radius_y="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCorner4"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:shiv_radius_x="20dp"
+            app:shiv_radius_y="10dp"
+            android:src="@mipmap/spider_black"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="边框"
+            android:textColor="@color/text_1"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp" />
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivBorder1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:shiv_border_width="10dp"
+            android:src="@mipmap/spider_black"
+            android:layout_marginBottom="10dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivBorder2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:shiv_border_width="4dp"
+            app:shiv_border_color="@color/status_bar"
+            android:src="@mipmap/spider_black"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+</ScrollView>

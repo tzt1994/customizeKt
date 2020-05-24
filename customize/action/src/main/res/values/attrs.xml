@@ -10,4 +10,17 @@
         <attr name="lll_fan_text_color" format="color|reference"/>
         <attr name="lll_fan_text_size" format="float|reference|dimension"/>
     </declare-styleable>
+
+    <!-- 圆角 -->
+    <declare-styleable name="ShapeShaderImageView">
+        <attr name="shiv_bg_color" format="color|reference"/>
+        <attr name="shiv_border_color" format="color|reference"/>
+        <attr name="shiv_border_width" format="reference|dimension"/>
+        <attr name="shiv_radius_x" format="dimension|reference"/>
+        <attr name="shiv_radius_y" format="dimension|reference"/>
+        <attr name="shiv_top_left" format="boolean"/>
+        <attr name="shiv_top_right" format="boolean"/>
+        <attr name="shiv_bottom_left" format="boolean"/>
+        <attr name="shiv_bottom_right" format="boolean"/>
+    </declare-styleable>
 </resources>

@@ -7,4 +7,8 @@
     <item android:id="@+id/customize"
         android:icon="@mipmap/customize"
         android:title="自定义"/>
+
+    <item android:id="@+id/my"
+        android:icon="@mipmap/my"
+        android:title="my"/>
 </menu>

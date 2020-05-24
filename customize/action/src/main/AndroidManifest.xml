@@ -8,5 +8,7 @@
             android:label="心跳 xfermode高级UI"/>
         <activity android:name=".ui.LeafLoadingActivity"
             android:label="LeafLoading"/>
+        <activity android:name=".ui.ShapeShaderActivity"
+            android:label="Shape BitmapShader实现"/>
     </application>
 </manifest>

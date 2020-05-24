@@ -1,6 +1,7 @@
 package com.tzt.customizekt
 
-import android.view.MenuItem
+import android.view.*
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -8,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.tzt.common.basedepency.base.BaseActivity
 import com.tzt.customizekt.fragment.ActionFragment
 import com.tzt.customizekt.fragment.CustomizeFragment
+import com.tzt.customizekt.fragment.MyFragment
 import kotlinx.android.synthetic.main.activity_custom.*
 
 
@@ -30,9 +32,12 @@ class CustomActivity: BaseActivity() {
         fragmengList.apply {
             add(ActionFragment())
             add(CustomizeFragment())
+            add(MyFragment())
         }
 
         customVp.adapter = PageAdapter(supportFragmentManager)
+
+        TipsDialog().show(supportFragmentManager, "TipsDialog")
     }
 
     override fun bindListener() {
@@ -50,8 +55,8 @@ class CustomActivity: BaseActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                tvTitle.text = if (position == 0) "UI效果" else "自定义View详解"
-                bnvTab.selectedItemId = if (position == 0) R.id.action else R.id.customize
+                tvTitle.text = if (position == 0) "UI效果" else if (position == 1)"自定义View详解" else "关于我"
+                bnvTab.selectedItemId = if (position == 0) R.id.action else if (position == 1) R.id.customize else R.id.my
             }
 
         })
@@ -65,6 +70,10 @@ class CustomActivity: BaseActivity() {
                 R.id.customize -> {
                     tvTitle.text = "自定义View详解"
                     customVp.setCurrentItem(1, true)
+                }
+                R.id.my -> {
+                    tvTitle.text = "关于我"
+                    customVp.setCurrentItem(2, true)
                 }
             }
 
