@@ -45,7 +45,7 @@ class ShapeShaderImageView: AppCompatImageView{
         style = Paint.Style.STROKE
         color = borderColor
         strokeWidth = borderWidth
-        strokeJoin = Paint.Join.MITER
+        strokeCap = Paint.Cap.SQUARE
     }
 
     @ColorInt
@@ -352,6 +352,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 topLeftRectF.right = borderLeft + borderRadiusX * 2
                 topLeftRectF.bottom = borderTop + borderRadiusY * 2
                 borderPath.addArc(topLeftRectF, 180f, 90f)
+                borderPath.moveTo(borderLeft + borderRadiusX, borderTop)
             } else {
                 clipPath.moveTo(left, top)
                 borderPath.moveTo(borderLeft, borderTop)
@@ -375,6 +376,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 topRightRectF.right = borderRight
                 topRightRectF.bottom = borderTop + borderRadiusY * 2
                 borderPath.addArc(topRightRectF, 270f, 90f)
+                borderPath.moveTo(borderRight, borderTop + borderRadiusY)
             }
             clipPath.lineTo(right, if (cornerBottomRightAble) bottom - radiusY else bottom)
             if (bh != borderRadiusY * 2) {
@@ -395,6 +397,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 bottomRightRectF.right = borderRight
                 bottomRightRectF.bottom = borderBottom
                 borderPath.addArc(bottomRightRectF, 0f, 90f)
+                borderPath.moveTo(borderRight - borderRadiusX ,borderBottom)
             }
             clipPath.lineTo(if (cornerBottomLeftAble) left + radiusX else left, bottom)
             if (bw != borderRadiusX * 2) {
@@ -416,6 +419,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 bottomLeftRectF.right = borderLeft + borderRadiusX * 2
                 bottomLeftRectF.bottom = borderBottom
                 borderPath.addArc(bottomLeftRectF, 90f, 90f)
+                borderPath.moveTo(borderLeft, borderBottom - borderRadiusY)
             }
             clipPath.lineTo(left, if (cornerTopLeftAble) top + radiusY else top)
             if (cornerTopLeftAble) {
@@ -435,6 +439,8 @@ class ShapeShaderImageView: AppCompatImageView{
             if (bh != borderRadiusY * 2) {
                 borderPath.lineTo(borderLeft, if (cornerTopLeftAble) borderTop + borderRadiusY else borderTop )
             }
+
+            borderPath.close()
         }
     }
 }
