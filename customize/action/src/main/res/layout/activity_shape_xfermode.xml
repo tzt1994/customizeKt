@@ -19,7 +19,7 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivFitXY"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -34,7 +34,7 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivFitCenter"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -49,21 +49,21 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivFitEND1"
             android:layout_width="200dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
             android:scaleType="fitEnd"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivFitEND2"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:src="@mipmap/spider_black"
             android:scaleType="fitEnd"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,21 +73,21 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivFitStart1"
             android:layout_width="200dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
             android:scaleType="fitStart"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivFitStart2"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:src="@mipmap/spider_black"
             android:scaleType="fitStart"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -97,13 +97,13 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivMartix"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
             android:scaleType="matrix"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,13 +113,13 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCenter"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
             android:scaleType="center"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -129,13 +129,13 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCenterCrop"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
             android:scaleType="centerCrop"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -145,13 +145,13 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp" />
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCenterInside"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
             android:scaleType="centerInside"
-            app:shiv_bg_color="@color/status_bar"/>
+            app:sxiv_bg_color="@color/status_bar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -161,61 +161,63 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp" />
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCorner1"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
-            app:shiv_radius="40dp"/>
+            app:sxiv_radius="40dp"
+            android:layout_marginTop="10dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCorner2"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
-            app:shiv_top_right="false"
-            app:shiv_bottom_left="false"
-            app:shiv_radius="40dp"
+            app:sxiv_top_right="false"
+            app:sxiv_bottom_left="false"
+            app:sxiv_radius_x="40dp"
+            app:sxiv_radius_y="40dp"
             android:layout_marginTop="10dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCorner3"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
-            app:shiv_top_left="false"
-            app:shiv_top_right="false"
-            app:shiv_bottom_right="false"
-            app:shiv_radius_x="30dp"
-            app:shiv_radius_y="30dp"
-            app:shiv_border_width="20dp"
+            app:sxiv_top_left="false"
+            app:sxiv_top_right="false"
+            app:sxiv_bottom_right="false"
+            app:sxiv_radius_x="30dp"
+            app:sxiv_radius_y="30dp"
+            app:sxiv_border_width="20dp"
             android:layout_marginTop="10dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCorner4"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/spider_black"
-            app:shiv_radius_x="10dp"
-            app:shiv_radius_y="20dp"
+            app:sxiv_radius_x="10dp"
+            app:sxiv_radius_y="20dp"
             android:layout_marginTop="10dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCorner5"
             android:layout_width="100dp"
             android:layout_height="200dp"
-            app:shiv_radius_x="50dp"
-            app:shiv_radius_y="100dp"
+            app:sxiv_radius_x="50dp"
+            app:sxiv_radius_y="100dp"
             android:scaleType="fitXY"
             android:src="@mipmap/spider_black"
             android:layout_marginTop="10dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivCorner6"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            app:shiv_radius_x="75dp"
-            app:shiv_radius_y="75dp"
+            app:sxiv_radius_x="75dp"
+            app:sxiv_radius_y="75dp"
             android:src="@mipmap/spider_black"
             android:layout_marginTop="10dp"/>
 
@@ -227,20 +229,20 @@
             android:textSize="18sp"
             android:layout_marginTop="30dp" />
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivBorder1"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            app:shiv_border_width="10dp"
+            app:sxiv_border_width="10dp"
             android:src="@mipmap/spider_black"
             android:layout_marginBottom="10dp"/>
 
-        <com.tzt.customize.action.widget.shapeimage.ShapeShaderImageView
+        <com.tzt.customize.action.widget.shapeimage.ShapeXfermodeImageView
             android:id="@+id/ssivBorder2"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            app:shiv_border_width="4dp"
-            app:shiv_border_color="@color/status_bar"
+            app:sxiv_border_width="4dp"
+            app:sxiv_border_color="@color/status_bar"
             android:src="@mipmap/spider_black"
             android:layout_marginBottom="10dp"/>
     </LinearLayout>

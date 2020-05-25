@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_2"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <com.tzt.customize.action.widget.shapeimage.CircleImageView
+            android:id="@+id/civCircle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/batman"
+            android:layout_marginTop="20dp"/>
+
+        <com.tzt.customize.action.widget.shapeimage.CircleImageView
+            android:id="@+id/civCircle2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            app:civ_border_color="@color/status_bar"
+            android:layout_marginTop="20dp"/>
+
+        <com.tzt.customize.action.widget.shapeimage.CircleImageView
+            android:id="@+id/civCircle3"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            app:civ_border_width="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <com.tzt.customize.action.widget.shapeimage.CircleImageView
+            android:id="@+id/civCircle4"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/spider_black"
+            app:civ_border_width="20dp"
+            app:civ_border_color="@color/status_bar"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+</ScrollView>

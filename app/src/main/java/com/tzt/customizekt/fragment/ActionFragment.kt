@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.CustomModel
-import com.tzt.customize.action.ui.HeartXfermodeActivity
-import com.tzt.customize.action.ui.LeafLoadingActivity
-import com.tzt.customize.action.ui.ScrapingCardXfermodeActivity
-import com.tzt.customize.action.ui.ShapeShaderActivity
+import com.tzt.customize.action.ui.*
 import com.tzt.customizekt.R
 import kotlinx.android.synthetic.main.fragment_customize.*
 
@@ -36,7 +33,9 @@ class ActionFragment: BaseFragment() {
             add(CustomModel("刮刮卡", "xfermode", ScrapingCardXfermodeActivity::class.java))
             add(CustomModel("心跳", "xfermode", HeartXfermodeActivity::class.java))
             add(CustomModel("LeafLoading", "风扇叶子loading效果", LeafLoadingActivity::class.java))
-            add(CustomModel("ShapeImageView", "BitmapShader实现", ShapeShaderActivity::class.java))
+            add(CustomModel("ShapeShaderImageView", "BitmapShader实现\n(矩形或圆形，自由设置圆角或椭圆角,边框)", ShapeShaderActivity::class.java))
+            add(CustomModel("ShapeXfermodeImageView", "Xfermode实现\n(矩形或圆形，自由设置圆角或椭圆角,边框)", ShapeXfermodeActivity::class.java))
+            add(CustomModel("CircleImageView", "圆形图片, 可设置边框宽度及颜色)", CircleImageViewActivity::class.java))
         }
 
         recyclerCustomize.layoutManager = LinearLayoutManager(context).apply {

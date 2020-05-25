@@ -10,5 +10,9 @@
             android:label="LeafLoading"/>
         <activity android:name=".ui.ShapeShaderActivity"
             android:label="Shape BitmapShader实现"/>
+        <activity android:name=".ui.ShapeXfermodeActivity"
+            android:label="Shape Xfermode实现"/>
+        <activity android:name=".ui.CircleImageViewActivity"
+            android:label="CircleImageView"/>
     </application>
 </manifest>

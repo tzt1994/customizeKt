@@ -1,4 +1,4 @@
-package com.tzt.customize.action.widget.shapimage
+package com.tzt.customize.action.widget.shapeimage
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,18 +12,18 @@ import com.tzt.customize.action.R
 
 
 /**
- * Description: shader实现的imageview
+ * Description: xfermode实现的imageview
  *
  * @author tangzhentao
  * @since 2020/5/6
  */
-class ShapeShaderImageView: AppCompatImageView{
+class ShapeXfermodeImageView: AppCompatImageView{
     // 裁剪路径
     private val clipPath = Path()
     // 边框路径
     private val borderPath = Path()
-    // 边框颜色宽度
-    private var borderColor = Color.WHITE
+    // 边框宽度
+    var borderColor = Color.WHITE
         set(value) {
             if (field != value) {
                 field = value
@@ -32,7 +32,8 @@ class ShapeShaderImageView: AppCompatImageView{
                 postInvalidate()
             }
         }
-    private var borderWidth = dpToPx(2)
+    // 边框宽度
+    var borderWidth = dpToPx(2)
         set(value) {
             if (field != value) {
                 field = value
@@ -45,9 +46,10 @@ class ShapeShaderImageView: AppCompatImageView{
         style = Paint.Style.STROKE
         color = borderColor
         strokeWidth = borderWidth
-        strokeCap = Paint.Cap.SQUARE
+        strokeJoin = Paint.Join.MITER
     }
 
+    // 背景颜色值 默认头型
     @ColorInt
     var bgColor = Color.TRANSPARENT
         set(value) {
@@ -59,15 +61,18 @@ class ShapeShaderImageView: AppCompatImageView{
 
     private val bitMapPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+    var cornerRadius = dpToPx(5)
     // 设置圆角，宽长一致为圆角，不一致为椭圆角，宽长都大于0才有角, 宽长最大值为view宽高的一半。
-    var radiusX = dpToPx(5)
+    // 角度的x值
+    var radiusX = -1f
         set(value) {
             if (field != value) {
                 field = value
                 postInvalidate()
             }
         }
-    var radiusY = dpToPx(5)
+    // 角度的y值
+    var radiusY = -1f
         set(value) {
             if (field != value) {
                 field = value
@@ -76,6 +81,7 @@ class ShapeShaderImageView: AppCompatImageView{
         }
 
     // 设置四边的圆角,默认设置
+    // 是否设置左上角
     var cornerTopLeftAble = true
         set(value) {
             if (field != value) {
@@ -83,6 +89,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 postInvalidate()
             }
         }
+    // 是否设置右上角
     var cornerTopRightAble = true
         set(value) {
             if (field != value) {
@@ -90,6 +97,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 postInvalidate()
             }
         }
+    // 是否设置左下角
     var cornerBottomLeftAble = true
         set(value) {
             if (field != value) {
@@ -97,6 +105,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 postInvalidate()
             }
         }
+    // 是否设置右下角
     var cornerBottomRightAble = true
         set(value) {
             if (field != value) {
@@ -104,6 +113,9 @@ class ShapeShaderImageView: AppCompatImageView{
                 postInvalidate()
             }
         }
+
+    // 左上角取消圆角是用来填充边框的空白问题
+    private val suppleRectF = RectF()
 
     // 是否设置了大小
     private var isSetSize: Boolean = false
@@ -113,16 +125,17 @@ class ShapeShaderImageView: AppCompatImageView{
     constructor(context: Context, attributeSet: AttributeSet?): this(context, attributeSet, 0)
 
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int): super(context, attributeSet, defStyleAttr) {
-        val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.ShapeShaderImageView)
-        cornerTopLeftAble = typedArray.getBoolean(R.styleable.ShapeShaderImageView_shiv_top_left, true)
-        cornerTopRightAble = typedArray.getBoolean(R.styleable.ShapeShaderImageView_shiv_top_right, true)
-        cornerBottomLeftAble = typedArray.getBoolean(R.styleable.ShapeShaderImageView_shiv_bottom_left, true)
-        cornerBottomRightAble = typedArray.getBoolean(R.styleable.ShapeShaderImageView_shiv_bottom_right, true)
-        bgColor = typedArray.getColor(R.styleable.ShapeShaderImageView_shiv_bg_color, bgColor)
-        borderColor = typedArray.getColor(R.styleable.ShapeShaderImageView_shiv_border_color, borderColor)
-        borderWidth = typedArray.getDimension(R.styleable.ShapeShaderImageView_shiv_border_width, borderWidth)
-        radiusX = typedArray.getDimension(R.styleable.ShapeShaderImageView_shiv_radius_x, radiusX)
-        radiusY = typedArray.getDimension(R.styleable.ShapeShaderImageView_shiv_radius_y, radiusY)
+        val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.ShapeXfermodeImageView)
+        cornerTopLeftAble = typedArray.getBoolean(R.styleable.ShapeXfermodeImageView_sxiv_top_left, true)
+        cornerTopRightAble = typedArray.getBoolean(R.styleable.ShapeXfermodeImageView_sxiv_top_right, true)
+        cornerBottomLeftAble = typedArray.getBoolean(R.styleable.ShapeXfermodeImageView_sxiv_bottom_left, true)
+        cornerBottomRightAble = typedArray.getBoolean(R.styleable.ShapeXfermodeImageView_sxiv_bottom_right, true)
+        bgColor = typedArray.getColor(R.styleable.ShapeXfermodeImageView_sxiv_bg_color, bgColor)
+        borderColor = typedArray.getColor(R.styleable.ShapeXfermodeImageView_sxiv_border_color, borderColor)
+        borderWidth = typedArray.getDimension(R.styleable.ShapeXfermodeImageView_sxiv_border_width, borderWidth)
+        cornerRadius = typedArray.getDimension(R.styleable.ShapeXfermodeImageView_sxiv_radius, cornerRadius)
+        radiusX = typedArray.getDimension(R.styleable.ShapeXfermodeImageView_sxiv_radius_x, radiusX)
+        radiusY = typedArray.getDimension(R.styleable.ShapeXfermodeImageView_sxiv_radius_y, radiusY)
         typedArray.recycle()
     }
 
@@ -136,16 +149,40 @@ class ShapeShaderImageView: AppCompatImageView{
     override fun onDraw(canvas: Canvas?) {
         canvas?.drawColor(bgColor)
 
-        canvas?.save()
-        val bitmap = (drawable as BitmapDrawable).bitmap
-        val bitmapShader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
-        val matrix = setBitmapMatrixAndPath(width.toFloat(), height.toFloat(), bitmap)
-        bitmapShader.setLocalMatrix(matrix)
-        bitMapPaint.shader = bitmapShader
-        canvas?.drawPath(clipPath, bitMapPaint)
-        canvas?.restore()
+        // BitmapShader实现
+        val saved = canvas?.saveLayer(null, null, Canvas.ALL_SAVE_FLAG)
+        val dstBitmap = (drawable as BitmapDrawable).bitmap
+        val matrix = setBitmapMatrixAndPath(width.toFloat(), height.toFloat(), dstBitmap)
+        val srcBitmap = createSrcBitmap(width, height)
+        canvas?.drawBitmap(dstBitmap, matrix, bitMapPaint)
+        bitMapPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
+        canvas?.drawBitmap(srcBitmap, 0f, 0f, bitMapPaint)
+        bitMapPaint.xfermode = null
+        canvas?.restoreToCount(saved?: 0)
 
+        borderPaint.style = Paint.Style.STROKE
         canvas?.drawPath(borderPath, borderPaint)
+        if (!cornerTopLeftAble) {
+            borderPaint.style = Paint.Style.FILL
+            canvas?.drawRect(suppleRectF, borderPaint)
+        }
+    }
+
+    /**
+     * 获取原图biatmap，用于截出形状图
+     */
+    private fun createSrcBitmap(w: Int, h: Int): Bitmap {
+        val srcBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        srcBitmap.eraseColor(Color.TRANSPARENT)
+
+        val canvas = Canvas(srcBitmap)
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.WHITE
+            style = Paint.Style.FILL
+        }
+        canvas.drawPath(clipPath, paint)
+
+        return srcBitmap
     }
 
     /**
@@ -310,12 +347,7 @@ class ShapeShaderImageView: AppCompatImageView{
         borderPath.reset()
         val w = right - left
         val h = bottom - top
-        if (radiusX > w / 2) {
-            radiusX = w / 2
-        }
-        if (radiusY > h / 2) {
-            radiusY = h / 2
-        }
+        setRadius(w, h)
         val borderLeft = left - borderWidth / 2
         val borderTop = top -  borderWidth / 2
         val borderRight = right +  borderWidth / 2
@@ -324,6 +356,11 @@ class ShapeShaderImageView: AppCompatImageView{
         val borderRadiusY = radiusY + borderWidth / 2
         val bw = borderRight - borderLeft
         val bh = borderBottom - borderTop
+
+        suppleRectF.left = borderLeft - borderWidth / 2
+        suppleRectF.top = borderTop - borderWidth / 2
+        suppleRectF.right = borderLeft
+        suppleRectF.bottom = borderTop
         // 圆角或椭圆角的矩形
         val topLeftRectF = RectF()
         val topRightRectF = RectF()
@@ -351,6 +388,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 topLeftRectF.top = borderTop
                 topLeftRectF.right = borderLeft + borderRadiusX * 2
                 topLeftRectF.bottom = borderTop + borderRadiusY * 2
+                borderPath.moveTo(borderLeft, borderTop + borderRadiusY)
                 borderPath.addArc(topLeftRectF, 180f, 90f)
                 borderPath.moveTo(borderLeft + borderRadiusX, borderTop)
             } else {
@@ -378,6 +416,7 @@ class ShapeShaderImageView: AppCompatImageView{
                 borderPath.addArc(topRightRectF, 270f, 90f)
                 borderPath.moveTo(borderRight, borderTop + borderRadiusY)
             }
+
             clipPath.lineTo(right, if (cornerBottomRightAble) bottom - radiusY else bottom)
             if (bh != borderRadiusY * 2) {
                 borderPath.lineTo(borderRight, if (cornerBottomRightAble) borderBottom - borderRadiusY else borderBottom)
@@ -437,10 +476,29 @@ class ShapeShaderImageView: AppCompatImageView{
 
 
             if (bh != borderRadiusY * 2) {
-                borderPath.lineTo(borderLeft, if (cornerTopLeftAble) borderTop + borderRadiusY else borderTop )
+                borderPath.lineTo(borderLeft, if (cornerTopLeftAble) borderTop + borderRadiusY else borderTop)
+            }
+        }
+    }
+
+    /**
+     * 设置圆角值
+     */
+    private fun setRadius(w: Float, h: Float) {
+        if (radiusX < 0 || radiusY < 0) {
+            if (cornerRadius < 0) {
+                cornerRadius = 0f
             }
 
-            borderPath.close()
+            radiusX = cornerRadius
+            radiusY = cornerRadius
+        }
+
+        if (radiusX > w / 2) {
+            radiusX = w / 2
+        }
+        if (radiusY > h / 2) {
+            radiusY = h / 2
         }
     }
 }
