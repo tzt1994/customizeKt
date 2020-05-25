@@ -195,10 +195,20 @@
 
         <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
             android:id="@+id/ssivCorner4"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            app:shiv_radius_x="50dp"
+            app:shiv_radius_y="100dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/spider_black"
+            android:layout_marginBottom="10dp"/>
+
+        <com.tzt.customize.action.widget.shapimage.ShapeShaderImageView
+            android:id="@+id/ssivCorner5"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            app:shiv_radius_x="20dp"
-            app:shiv_radius_y="10dp"
+            app:shiv_radius_x="75dp"
+            app:shiv_radius_y="75dp"
             android:src="@mipmap/spider_black"
             android:layout_marginBottom="10dp"/>
 

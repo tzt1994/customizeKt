@@ -45,6 +45,7 @@ class ShapeShaderImageView: AppCompatImageView{
         style = Paint.Style.STROKE
         color = borderColor
         strokeWidth = borderWidth
+        strokeJoin = Paint.Join.MITER
     }
 
     @ColorInt
@@ -58,7 +59,7 @@ class ShapeShaderImageView: AppCompatImageView{
 
     private val bitMapPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    // 设置圆角，宽长一致为圆角，不一致为椭圆角，宽长都大于0才有角
+    // 设置圆角，宽长一致为圆角，不一致为椭圆角，宽长都大于0才有角, 宽长最大值为view宽高的一半。
     var radiusX = dpToPx(5)
         set(value) {
             if (field != value) {
@@ -309,6 +310,12 @@ class ShapeShaderImageView: AppCompatImageView{
         borderPath.reset()
         val w = right - left
         val h = bottom - top
+        if (radiusX > w / 2) {
+            radiusX = w / 2
+        }
+        if (radiusY > h / 2) {
+            radiusY = h / 2
+        }
         val borderLeft = left - borderWidth / 2
         val borderTop = top -  borderWidth / 2
         val borderRight = right +  borderWidth / 2
@@ -350,7 +357,9 @@ class ShapeShaderImageView: AppCompatImageView{
                 borderPath.moveTo(borderLeft, borderTop)
             }
             clipPath.lineTo(if (cornerTopRightAble) right - radiusX else right , top)
-            borderPath.lineTo(if (cornerTopRightAble) borderRight - borderRadiusX else borderRight , borderTop)
+            if (bw != borderRadiusX * 2) {
+                borderPath.lineTo(if (cornerTopRightAble) borderRight - borderRadiusX else borderRight , borderTop)
+            }
 
             if (cornerTopRightAble) {
                 // 右上角
@@ -364,11 +373,13 @@ class ShapeShaderImageView: AppCompatImageView{
                 topRightRectF.left = borderRight - borderRadiusX * 2
                 topRightRectF.top = borderTop
                 topRightRectF.right = borderRight
-                topRightRectF.bottom = borderTop + borderRadiusX * 2
+                topRightRectF.bottom = borderTop + borderRadiusY * 2
                 borderPath.addArc(topRightRectF, 270f, 90f)
             }
             clipPath.lineTo(right, if (cornerBottomRightAble) bottom - radiusY else bottom)
-            borderPath.lineTo(borderRight, if (cornerBottomRightAble) borderBottom - borderRadiusY else borderBottom)
+            if (bh != borderRadiusY * 2) {
+                borderPath.lineTo(borderRight, if (cornerBottomRightAble) borderBottom - borderRadiusY else borderBottom)
+            }
 
             if (cornerBottomRightAble) {
                 // 右下角
@@ -386,7 +397,9 @@ class ShapeShaderImageView: AppCompatImageView{
                 borderPath.addArc(bottomRightRectF, 0f, 90f)
             }
             clipPath.lineTo(if (cornerBottomLeftAble) left + radiusX else left, bottom)
-            borderPath.lineTo(if (cornerBottomLeftAble) borderLeft + borderRadiusX else borderLeft, borderBottom)
+            if (bw != borderRadiusX * 2) {
+                borderPath.lineTo(if (cornerBottomLeftAble) borderLeft + borderRadiusX else borderLeft, borderBottom)
+            }
 
             if (cornerBottomLeftAble) {
                 // 左下角
@@ -404,7 +417,6 @@ class ShapeShaderImageView: AppCompatImageView{
                 bottomLeftRectF.bottom = borderBottom
                 borderPath.addArc(bottomLeftRectF, 90f, 90f)
             }
-
             clipPath.lineTo(left, if (cornerTopLeftAble) top + radiusY else top)
             if (cornerTopLeftAble) {
                 clipPath.lineTo(left, top + radiusY)
@@ -419,7 +431,10 @@ class ShapeShaderImageView: AppCompatImageView{
                 clipPath.lineTo(left + radiusX, bottom)
             }
 
-            borderPath.lineTo(borderLeft, if (cornerTopLeftAble) borderTop + borderRadiusY else borderTop )
+
+            if (bh != borderRadiusY * 2) {
+                borderPath.lineTo(borderLeft, if (cornerTopLeftAble) borderTop + borderRadiusY else borderTop )
+            }
         }
     }
 }
