@@ -169,7 +169,7 @@ class ShapeXfermodeImageView: AppCompatImageView{
     }
 
     /**
-     * 获取原图biatmap，用于截出形状图
+     * 获取源图biatmap，用于截出形状图
      */
     private fun createSrcBitmap(w: Int, h: Int): Bitmap {
         val srcBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
