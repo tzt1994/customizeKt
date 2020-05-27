@@ -17,7 +17,8 @@ import com.tzt.customize.path.bezier.BezierActivity
 import com.tzt.customize.propertyanimation.AnimatorActivity
 import com.tzt.customize.transform.ClipTransFormActivity
 import com.tzt.customizekt.R
-import com.tzt.custom.canvas.CanvasDrawActivity
+import com.tzt.custom.canvas.ui.CanvasDrawActivity
+import com.tzt.custom.canvas.ui.ScrollerAcitvity
 import com.tzt.customize.base.ClassicProcessActivity
 import com.tzt.customize.base.CustomBaseActivity
 import kotlinx.android.synthetic.main.fragment_customize.*
@@ -47,6 +48,7 @@ class CustomizeFragment: BaseFragment() {
             add(CustomModel("自定义View", "Clip(裁剪), 几何变换详解", ClipTransFormActivity::class.java))
             add(CustomModel("自定义View", "绘制顺序", DrawOrderActivity::class.java))
             add(CustomModel("属性动画", "ObjectAnimator", AnimatorActivity::class.java))
+            add(CustomModel("让view滑动起来", "Scroller , VelocityTracker", ScrollerAcitvity::class.java))
             add(CustomModel("贝塞尔曲线", "贝塞尔曲线的详解", BezierActivity::class.java))
         }
 

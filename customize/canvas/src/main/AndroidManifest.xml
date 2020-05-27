@@ -2,7 +2,9 @@
     package="com.tzt.custom.canvas" >
 
     <application>
-        <activity android:name=".CanvasDrawActivity"
+        <activity android:name=".ui.CanvasDrawActivity"
             android:label="绘制基础"/>
+        <activity android:name=".ui.ScrollerAcitvity"
+            android:label="滑动的view"/>
     </application>
 </manifest>

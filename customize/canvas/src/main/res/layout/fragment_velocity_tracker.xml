@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="1.作用"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="VelocityTracker 是一个根据我们手指的触摸事件，计算出滑动速度的工具类"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="2.API"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="obtain()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="获取一个 VelocityTracker 对象。VelocityTracker的构造函数是私有的，也就是不能通过new来创建。"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="recycle()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="回收 VelocityTracker 实例。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="clear()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="重置 VelocityTracker 回其初始状态。。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="addMovement(MotionEvent event)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="为 VelocityTracker 传入触摸事件（包括ACTION_DOWN、ACTION_MOVE、ACTION_UP等），这样 VelocityTracker 才能在调用了 computeCurrentVelocity 方法后，正确的获得当前的速度"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="computeCurrentVelocity(int units)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="根据已经传入的触摸事件计算出当前的速度，可以通过getXVelocity 或 getYVelocity进行获取对应方向上的速度。值得注意的是，计算出的速度值不超过Float.MAX_VALUE。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="computeCurrentVelocity(int units, float maxVelocity)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="根据已经传入的触摸事件计算出当前的速度，可以通过getXVelocity 或 getYVelocity进行获取对应方向上的速度。值得注意的是，计算出的速度值不超过maxVelocity。\nunits： 速度的单位。值为1表示每毫秒像素数，1000表示每秒像素数。\nmaxVelocity： 最大的速度，计算出的速度不会超过这个值。值得注意的是，这个参数必须是正数，且其单位就是我们在第一参数设置的单位。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getXVelocity()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="获取最后计算的水平方向速度，使用此方法前需要记得先调用computeCurrentVelocity"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getYVelocity()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="获取最后计算的垂直方向速度，使用此方法前需要记得先调用computeCurrentVelocity"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getXVelocity(int id)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="获取对应的手指id最后计算的水平方向速度，使用此方法前需要记得先调用computeCurrentVelocity\n id： 触碰的手指的id"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getYVelocity(int id)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="获取对应的手指id最后计算的垂直方向速度，使用此方法前需要记得先调用computeCurrentVelocity\n id： 触碰的手指的id"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="3.小结"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:layout_marginBottom="20dp"
+            android:text="1.在触摸事件为 ACTION_DOWN 或是进入 onTouchEvent 方法时，通过 obtain 获取一个 VelocityTracker ；\n2.在触摸事件为 ACTION_UP 时，调用 recycle 进行释放 VelocityTracker；\n3.在进入 onTouchEvent 方法或将 ACTION_DOWN、ACTION_MOVE、ACTION_UP 的事件通过 addMovement 方法添加进 VelocityTracker；\n4.在需要获取速度的地方，先调用 computeCurrentVelocity 方法，然后通过 getXVelocity、getYVelocity 获取对应方向的速度；"/>
+    </LinearLayout>
+</ScrollView>

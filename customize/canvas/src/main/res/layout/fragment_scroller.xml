@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="1.作用"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_2"
+            android:text="Scroller 是一个让视图 滚动起来的工具类,负责根据我们提供的数据计算出相应的坐标，但是具体的滚动逻辑还是由我们程序猿来进行 移动内容 实现"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="2.API"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="构造函数："
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="Scroller(Context context)\n\tcontext: 上下文"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="Scroller(Context context, Interpolator interpolator)\n\tinterpolator: 插值器，用于在 computeScrollOffset 方法中，并且是在 SCROLL_MODE 模式下，根据时间的推移计算位置。为null时，使用默认 ViscousFluidInterpolator 插值器"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="Scroller(Context context, Interpolator interpolator, boolean flywheel)\nflywheel：支持渐进式行为，该参数只作用于 FLING_MODE 模式下"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="setFriction(float friction)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="用于设置在 FLING_MODE 模式下的摩擦系数\nfriction: 摩擦系数"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="isFinished()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="滚动是否已结束，用于判断 Scroller 在滚动过程的状态，我们可以做一些终止或继续运行的逻辑分支。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text=" forceFinished(boolean finished)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="强制的让滚动状态置为我们所设置的参数值 finished "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getDuration()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="返回 Scroller 将持续的时间（以毫秒为单位）"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getCurrX()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="返回滚动中的当前X相对于原点的偏移量，即当前坐标的X坐标。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getCurrY()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="返回滚动中的当前Y相对于原点的偏移量，即当前坐标的Y坐标。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="getCurrVelocity()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="获取当前速度。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="computeScrollOffset()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="返计算滚动中的新坐标，会配合着 getCurrX 和 getCurrY 方法使用，达到滚动效果。值得注意的是，如果返回true，说明动画还未完成。相反，返回false，说明动画已经完成或是被终止了。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="startScroll(int startX, int startY, int dx, int dy)\nstartScroll(int startX, int startY, int dx, int dy, int duration)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="通过提供起点，行程距离和滚动持续时间，进行滚动的一种方式，即 SCROLL_MODE。该方法可以用于实现像ViewPager的滑动效果。\nstartX： 开始点的x坐标\nstartY： 开始点的y坐标\ndx： 水平方向的偏移量，正数会将内容向左滚动\ndy： 垂直方向的偏移量，正数会将内容向上滚动。\n duration： 滚动的时长"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="fling(int startX, int startY, int velocityX, int velocityY,int minX, int maxX, int minY, int maxY)"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:text="用于带速度的滑动，行进的距离将取决于投掷的初始速度。可以用于实现类似 RecycleView 的滑动效果。\n第一个参数 startX： 开始滑动点的x坐标\nstartY： 开始滑动点的y坐标\nvelocityX： 水平方向的初始速度，单位为每秒多少像素（px/s）\nvelocityY： 垂直方向的初始速度，单位为每秒多少像素（px/s）\nminX： x坐标最小的值，最后的结果不会低于这个值；\nmaxX： x坐标最大的值，最后的结果不会超过这个值；\nminY： y坐标最小的值，最后的结果不会低于这个值；\nmaxY： y坐标最大的值，最后的结果不会超过这个值；\n"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_1"
+            android:text="abortAnimation()"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_2"
+            android:layout_marginBottom="20dp"
+            android:text="停止动画，值得注意的是，此时如果调用 getCurrX() 和 getCurrY() 移动到的是最终的坐标，这一点和通过 forceFinished 直接将动画停止是不相同的"/>
+    </LinearLayout>
+</ScrollView>
