@@ -14,5 +14,7 @@
             android:label="Shape Xfermode实现"/>
         <activity android:name=".ui.CircleImageViewActivity"
             android:label="CircleImageView"/>
+        <activity android:name=".ui.MutipleScaleActivity"
+            android:label="多种模式刻度尺"/>
     </application>
 </manifest>

@@ -36,6 +36,7 @@ class ActionFragment: BaseFragment() {
             add(CustomModel("ShapeShaderImageView", "BitmapShader实现\n(矩形或圆形，自由设置圆角或椭圆角,边框)", ShapeShaderActivity::class.java))
             add(CustomModel("ShapeXfermodeImageView", "Xfermode实现\n(矩形或圆形，自由设置圆角或椭圆角,边框)", ShapeXfermodeActivity::class.java))
             add(CustomModel("CircleImageView", "圆形图片, 可设置边框宽度及颜色)", CircleImageViewActivity::class.java))
+            add(CustomModel("MutipleScaleView", "刻度尺\n(支持规则数据和不规则数据)", MutipleScaleActivity::class.java))
         }
 
         recyclerCustomize.layoutManager = LinearLayoutManager(context).apply {

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="#ff0000"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_type="irregular"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_long_line_width="1dp"
+            app:msv_scale_short_line_width="1dp"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_long_line_width="1dp"
+            app:msv_scale_short_line_width="1dp"
+            app:msv_scale_line_height="36dp"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_long_line_width="1dp"
+            app:msv_scale_short_line_width="1dp"
+            app:msv_scale_line_height="36dp"
+            app:msv_min="100"
+            app:msv_max="1100"
+            app:msv_value="400"
+            app:msv_unit="10"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_long_line_width="1dp"
+            app:msv_scale_short_line_width="1dp"
+            app:msv_scale_line_height="36dp"
+            app:msv_scale_long_line_color="#ff0000"
+            app:msv_scale_short_line_color="#fff000"
+            app:msv_min="1000"
+            app:msv_max="3000"
+            app:msv_value="1400"
+            app:msv_unit="10"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_long_line_width="1dp"
+            app:msv_scale_short_line_width="1dp"
+            app:msv_scale_line_height="36dp"
+            app:msv_scale_long_line_color="#ff0000"
+            app:msv_scale_short_line_color="#fff000"
+            app:msv_min="1000"
+            app:msv_max="20000"
+            app:msv_value="11000"
+            app:msv_unit="100"
+            app:msv_min_scrollable_nums="5"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_long_line_width="1dp"
+            app:msv_scale_short_line_width="1dp"
+            app:msv_scale_line_height="36dp"
+            app:msv_min="100"
+            app:msv_max="900"
+            app:msv_value="500"
+            app:msv_unit="10"
+            app:msv_scale_line_space="10dp"
+            app:msv_scale_text_color="#000000"
+            app:msv_scale_text_size="16sp"
+            app:msv_select_color="#ff0000"
+            app:msv_scale_line_able="five"/>
+
+        <com.tzt.customize.action.widget.MutipleScaleView
+            android:id="@+id/scale8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_long_line_width="1dp"
+            app:msv_scale_short_line_width="1dp"
+            app:msv_scale_line_height="36dp"
+            app:msv_min="1"
+            app:msv_max="9"
+            app:msv_value="5"
+            app:msv_unit="0.1"
+            app:msv_scale_line_space="10dp"
+            app:msv_scale_text_color="#000000"
+            app:msv_scale_text_size="16sp"
+            app:msv_select_color="#ff0000"
+            app:msv_scale_line_able="five"/>
+    </LinearLayout>
+</ScrollView>

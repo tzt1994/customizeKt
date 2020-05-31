@@ -44,4 +44,33 @@
         <attr name="civ_border_color" format="color|reference"/>
         <attr name="civ_border_width" format="reference|dimension"/>
     </declare-styleable>
+
+    <!-- 刻度尺 -->
+    <declare-styleable name="MutipleScaleView">
+        <attr name="msv_scale_type" format="enum" >
+            <enum name="rule" value="1"/>
+            <enum name="irregular" value="2"/>
+        </attr>
+        <attr name="msv_scale_line_able" format="enum" >
+            <enum name="ten" value="1"/>
+            <enum name="five" value="2"/>
+        </attr>
+        <attr name="msv_click_select" format="boolean"/>
+        <attr name="msv_unit" format="float"/>
+        <attr name="msv_min" format="integer"/>
+        <attr name="msv_max" format="integer"/>
+        <attr name="msv_value" format="string"/>
+        <attr name="msv_irregulars" format="string"/>
+        <attr name="msv_min_scrollable_nums" format="integer"/>
+        <attr name="msv_indicator_src" format="reference|integer"/>
+        <attr name="msv_select_color" format="reference|color"/>
+        <attr name="msv_scale_long_line_color" format="reference|color"/>
+        <attr name="msv_scale_long_line_width" format="reference|dimension"/>
+        <attr name="msv_scale_short_line_color" format="reference|color"/>
+        <attr name="msv_scale_short_line_width" format="reference|dimension"/>
+        <attr name="msv_scale_line_height" format="reference|dimension"/>
+        <attr name="msv_scale_line_space" format="reference|dimension"/>
+        <attr name="msv_scale_text_color" format="reference|color"/>
+        <attr name="msv_scale_text_size" format="reference|dimension"/>
+    </declare-styleable>
 </resources>
