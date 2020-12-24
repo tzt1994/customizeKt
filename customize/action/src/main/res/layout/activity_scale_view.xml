@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,14 +19,22 @@
             android:paddingBottom="20dp"
             android:background="#ff0000"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:msv_scale_type="irregular"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
+            android:id="@+id/scale9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:msv_scale_type="irregular"
+            app:msv_irregulars="10元,14元,15元,20元,30元,70元,72元,77元"/>
+
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +42,7 @@
             app:msv_scale_long_line_width="1dp"
             app:msv_scale_short_line_width="1dp"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +51,7 @@
             app:msv_scale_short_line_width="1dp"
             app:msv_scale_line_height="36dp"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +64,7 @@
             app:msv_value="400"
             app:msv_unit="10"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +79,7 @@
             app:msv_value="1400"
             app:msv_unit="10"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,7 +95,7 @@
             app:msv_unit="100"
             app:msv_min_scrollable_nums="5"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +113,7 @@
             app:msv_select_color="#ff0000"
             app:msv_scale_line_able="five"/>
 
-        <com.tzt.customize.action.widget.MutipleScaleView
+        <com.tzt.mutiplescale.MutipleScaleView
             android:id="@+id/scale8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

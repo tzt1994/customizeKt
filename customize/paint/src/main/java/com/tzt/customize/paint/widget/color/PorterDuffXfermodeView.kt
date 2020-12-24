@@ -24,6 +24,8 @@ class PorterDuffXfermodeView: View{
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     private var model =  PorterDuff.Mode.SRC
+    private val bitmapDst = BitmapFactory.decodeResource(resources, R.mipmap.dst)
+    private val bitmapSrc = BitmapFactory.decodeResource(resources, R.mipmap.src)
 
     private var noneMode = MODE
 
@@ -41,8 +43,6 @@ class PorterDuffXfermodeView: View{
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        val bitmapDst = BitmapFactory.decodeResource(resources, R.mipmap.dst)
-        val bitmapSrc = BitmapFactory.decodeResource(resources, R.mipmap.src)
         val matrix = Matrix()
         val scale = (width * 1f) / bitmapDst.width
         matrix.setScale(scale, scale)

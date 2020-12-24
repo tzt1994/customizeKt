@@ -11,7 +11,5 @@ import com.tzt.customize.paint.R
  */
 class ColorFragment : BaseFragment() {
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_color
-    }
+    override fun layoutResID() = R.layout.fragment_paint_color
 }
