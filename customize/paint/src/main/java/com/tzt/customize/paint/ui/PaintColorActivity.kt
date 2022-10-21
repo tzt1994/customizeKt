@@ -7,13 +7,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tzt.common.basedepency.PaintModel
 import com.tzt.common.basedepency.base.BaseActivity
-import com.tzt.common.basedepency.widget.ToobarParams
-import com.tzt.customize.paint.R
+import com.tzt.common.basedepency.widget.ToolbarParams
+import com.tzt.customize.paint.databinding.ActivityCommonBinding
 import com.tzt.customize.paint.fragment.color.ColorFragment
 import com.tzt.customize.paint.fragment.color.ColorMatrixFragment
 import com.tzt.customize.paint.fragment.color.PaintColorFragment
 import com.tzt.customize.paint.fragment.color.XfermodeFragment
-import kotlinx.android.synthetic.main.activity_common.*
 
 
 /**
@@ -22,22 +21,18 @@ import kotlinx.android.synthetic.main.activity_common.*
  * @author tangzhentao
  * @since 2020/4/27
  */
-class PaintColorActivity: BaseActivity() {
+class PaintColorActivity: BaseActivity<ActivityCommonBinding>() {
     private var bezierModels = ArrayList<PaintModel>()
 
-    override fun getToobarParams(): ToobarParams? {
-        return ToobarParams(
-            createFinisIcon(),
-            "Paint 颜色的处理",
-            createOriginalIcon {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-2/")))
-            }
-        )
-    }
+    override fun layoutBinding() = ActivityCommonBinding.inflate(layoutInflater, null, false)
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_common
-    }
+    override fun getToolbarParams() = ToolbarParams(
+        createFinisIcon(),
+        "Paint 颜色的处理",
+        createOriginalIcon {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-2/")))
+        }
+    )
 
     override fun initData() {
         bezierModels.apply {
@@ -71,8 +66,8 @@ class PaintColorActivity: BaseActivity() {
             add(PaintModel(title = "Xfermode", fragment = XfermodeFragment()))
         }
 
-        VpBezier.adapter = BezierAdapter(supportFragmentManager)
-        tabBezier.setupWithViewPager(VpBezier)
+        mBinding.VpBezier.adapter = BezierAdapter(supportFragmentManager)
+        mBinding.tabBezier.setupWithViewPager(mBinding.VpBezier)
     }
 
     inner class BezierAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {

@@ -1,9 +1,9 @@
 package com.tzt.customize.base.fragment
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.tzt.common.basedepency.BaseFragment
-import com.tzt.customize.base.R
-import kotlinx.android.synthetic.main.fragment_angle.*
-import kotlinx.android.synthetic.main.fragment_color.*
+import com.tzt.customize.base.databinding.FragmentColorBinding
 
 
 /**
@@ -12,10 +12,11 @@ import kotlinx.android.synthetic.main.fragment_color.*
  * @author tangzhentao
  * @since 2020/5/21
  */
-class ColorFragment: BaseFragment() {
-    override fun layoutResID(): Int {
-        return R.layout.fragment_color
-    }
+class ColorFragment: BaseFragment<FragmentColorBinding>() {
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentColorBinding.inflate(inflater, container, false)
 
     override fun initData() {
         val html = "<h2 id=\"一简单介绍颜色\">一.简单介绍颜色</h2>\n" +
@@ -100,6 +101,6 @@ class ColorFragment: BaseFragment() {
                 "\n" +
                 "<p><strong>当RGB全取最小值(0或0x000000)时颜色为黑色，全取最大值(255或0xffffff)时颜色为白色</strong></p>\n" +
                 "\n"
-        wvColor.loadData(html, "text/html", "UTF-8")
+        binding.wvColor.loadData(html, "text/html", "UTF-8")
     }
 }

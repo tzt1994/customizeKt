@@ -6,13 +6,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tzt.common.basedepency.PaintModel
 import com.tzt.common.basedepency.base.BaseActivity
-import com.tzt.common.basedepency.widget.ToobarParams
+import com.tzt.common.basedepency.widget.ToolbarParams
+import com.tzt.customize.propertyanimation.databinding.ActivityAnimationBinding
 import com.tzt.customize.propertyanimation.fragment.DurationFragment
 import com.tzt.customize.propertyanimation.fragment.InterpolatorFragment
 import com.tzt.customize.propertyanimation.fragment.PropertyValuesHoldersFragment
 import com.tzt.customize.propertyanimation.fragment.TypeEvaluatorFragment
 import com.tzt.customize.propertyanimation.fragment.ViewPropertyFragment
-import kotlinx.android.synthetic.main.activity_animation.*
 
 
 /**
@@ -21,22 +21,18 @@ import kotlinx.android.synthetic.main.activity_animation.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class AnimatorActivity: BaseActivity() {
+class AnimatorActivity: BaseActivity<ActivityAnimationBinding>() {
     private var paintModels = ArrayList<PaintModel>()
 
-    override fun getToobarParams(): ToobarParams? {
-        return ToobarParams(
-            createFinisIcon(),
-            "属性动画",
-            createOriginalIcon {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-6/")))
-            }
-        )
-    }
+    override fun layoutBinding() = ActivityAnimationBinding.inflate(layoutInflater, null, false)
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_animation
-    }
+    override fun getToolbarParams() = ToolbarParams(
+        createFinisIcon(),
+        "属性动画",
+        createOriginalIcon {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-6/")))
+        }
+    )
 
     override fun initData() {
         paintModels.apply {
@@ -48,12 +44,12 @@ class AnimatorActivity: BaseActivity() {
             add(PaintModel("PropertyValuesHolders.ofKeyframe()", PropertyValuesHoldersFragment()))
         }
 
-        VpBezier.adapter = BezierAdapter(supportFragmentManager)
-        tabBezier.setupWithViewPager(VpBezier)
+        mBinding.VpBezier.adapter = BezierAdapter(supportFragmentManager)
+        mBinding.tabBezier.setupWithViewPager(mBinding.VpBezier)
     }
 
     inner class BezierAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
-        override fun getPageTitle(position: Int): CharSequence? {
+        override fun getPageTitle(position: Int): CharSequence {
             return paintModels[position].title
         }
 

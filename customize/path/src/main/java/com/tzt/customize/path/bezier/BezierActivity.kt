@@ -6,10 +6,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tzt.common.basedepency.BezierModel
 import com.tzt.common.basedepency.base.BaseActivity
-import com.tzt.common.basedepency.widget.ToobarParams
+import com.tzt.common.basedepency.widget.ToolbarParams
 import com.tzt.customize.path.R
 import com.tzt.customize.path.bezier.fragment.*
-import kotlinx.android.synthetic.main.activity_bezier.*
+import com.tzt.customize.path.databinding.ActivityBezierBinding
 
 
 /**
@@ -18,22 +18,18 @@ import kotlinx.android.synthetic.main.activity_bezier.*
  * @author tangzhentao
  * @since 2020/4/27
  */
-class BezierActivity: BaseActivity() {
+class BezierActivity: BaseActivity<ActivityBezierBinding>() {
     private var bezierModels = ArrayList<BezierModel>()
 
-    override fun getToobarParams(): ToobarParams? {
-        return ToobarParams(
-            createFinisIcon(),
-            "贝塞尔曲线",
-            createOriginalIcon {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://juejin.im/post/5c3988516fb9a049d1325c83")))
-            }
-        )
-    }
+    override fun layoutBinding() = ActivityBezierBinding.inflate(layoutInflater, null, false)
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_bezier
-    }
+    override fun getToolbarParams() = ToolbarParams(
+        createFinisIcon(),
+        "贝塞尔曲线",
+        createOriginalIcon {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://juejin.im/post/5c3988516fb9a049d1325c83")))
+        }
+    )
 
     override fun initData() {
         bezierModels.apply {
@@ -46,8 +42,8 @@ class BezierActivity: BaseActivity() {
             add(BezierModel(title = "乘风破浪的小船", fragment = ShipBezierFragment()))
         }
 
-        VpBezier.adapter = BezierAdapter(supportFragmentManager)
-        tabBezier.setupWithViewPager(VpBezier)
+        mBinding.VpBezier.adapter = BezierAdapter(supportFragmentManager)
+        mBinding.tabBezier.setupWithViewPager(mBinding.VpBezier)
     }
 
     inner class BezierAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {

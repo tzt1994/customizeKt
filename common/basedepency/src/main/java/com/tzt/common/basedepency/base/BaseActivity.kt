@@ -5,14 +5,16 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.tzt.common.basedepency.ActivityController
 import com.tzt.common.basedepency.R
 import com.tzt.common.basedepency.isLightColor
 import com.tzt.common.basedepency.widget.Toobar
-import com.tzt.common.basedepency.widget.ToobarParams
-import kotlinx.android.synthetic.main.content.*
+import com.tzt.common.basedepency.widget.ToolbarParams
+import androidx.viewbinding.ViewBinding
+import com.tzt.common.basedepency.databinding.ContentBinding
 
 
 /**
@@ -21,14 +23,19 @@ import kotlinx.android.synthetic.main.content.*
  * @author tangzhentao
  * @since 2020/5/14
  */
-abstract class BaseActivity: AppCompatActivity() {
-    lateinit var context: Context
+abstract class BaseActivity<T : ViewBinding>: FragmentActivity() {
+    protected lateinit var context: Context
 
     /**
      * 整个页面, 内容页面, 错误页面，空数据页面，数据页面，标题栏
      */
     private lateinit var allLayout: LinearLayout
-    protected lateinit var toobar: Toobar
+
+    protected var toolbar: Toobar? = null
+
+    protected lateinit var mBinding: T
+
+    protected lateinit var contentBinding: ContentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,39 +47,36 @@ abstract class BaseActivity: AppCompatActivity() {
         allLayout.setBackgroundColor(0xffffff)
 
         //设置头部布局（状态栏背景和标题栏）
-        val toobarParams = getToobarParams()
+        val toolbarParams = getToolbarParams()
         if (getStatusBarColorSameAsTooBarColor()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                //设置状态栏颜色
-                val color = toobarParams?.backgroundColor ?: Color.parseColor("#1E90FF")
+            //设置状态栏颜色
+            val color = toolbarParams?.backgroundColor ?: Color.parseColor("#1E90FF")
 
-                window.statusBarColor = color
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    //设置状态栏文字图标 黑色还是白色
-                    window.decorView.systemUiVisibility =
-                        if (isLightColor(color)) View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR else View.SYSTEM_UI_FLAG_VISIBLE
-                }
+            window.statusBarColor = color
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                //设置状态栏文字图标 黑色还是白色
+                window.decorView.systemUiVisibility = if (isLightColor(color)) View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR else View.SYSTEM_UI_FLAG_VISIBLE
             }
         }
 
-        if (toobarParams != null) {
-            toobar = Toobar(context)
-            toobar.setBackgroundColor(toobarParams.backgroundColor)
-            val params = LinearLayout.LayoutParams(-1, toobarParams.toobarHeight)
-            allLayout.addView(toobar, params)
+        if (toolbarParams != null) {
+            toolbar = Toobar(context)
+            toolbar?.setBackgroundColor(toolbarParams.backgroundColor)
+            toolbar?.let {
+                val params = LinearLayout.LayoutParams(-1, toolbarParams.toobarHeight)
+                allLayout.addView(it, params)
+            }
         }
 
 
         val contentParams = LinearLayout.LayoutParams(-1, 0)
         contentParams.weight = 1f
-        allLayout.addView(View.inflate(context, R.layout.content, null), contentParams)
+        contentBinding = ContentBinding.inflate(layoutInflater, null, false)
+        allLayout.addView(contentBinding.root, contentParams)
+        mBinding = layoutBinding()
+        contentBinding.root.addView(mBinding.root, FrameLayout.LayoutParams(-1, -1))
 
         setContentView(allLayout)
-
-        if (layoutResID() > 0) {
-            viewStub.layoutResource = layoutResID()
-            viewStub.inflate()
-        }
 
         updateTitleBar()
 
@@ -87,17 +91,17 @@ abstract class BaseActivity: AppCompatActivity() {
      * 更新标题栏
      */
     private fun updateTitleBar() {
-        val  toobarParams = getToobarParams() ?: return
-        toobar.mHeight = toobarParams.toobarHeight
-        toobar.setTitle(toobarParams.title)
-        toobar.addLeftAction(toobarParams.leftActions)
-        toobar.addRightAction(toobarParams.rightActions)
+        val  toolbarParams = getToolbarParams() ?: return
+        toolbar?.mHeight = toolbarParams.toobarHeight
+        toolbar?.setTitle(toolbarParams.title)
+        toolbar?.addLeftAction(toolbarParams.leftActions)
+        toolbar?.addRightAction(toolbarParams.rightActions)
     }
 
     /**
      * 是否显示标题栏
      */
-    open fun getToobarParams() : ToobarParams? { return  null}
+    open fun getToolbarParams() : ToolbarParams? { return  null }
 
     /**
      * 设置是否让状态颜色和标题栏一致
@@ -109,7 +113,7 @@ abstract class BaseActivity: AppCompatActivity() {
      * 内容布局
      * return 布局id Int
      */
-    protected abstract fun layoutResID(): Int
+    protected abstract fun layoutBinding(): T
 
     open fun initData() {}
 
@@ -121,19 +125,19 @@ abstract class BaseActivity: AppCompatActivity() {
     protected fun showPage(state: PageState) {
         when (state) {
             PageState.NULL -> {
-                dataLayout.visibility = View.GONE
-                nullLayout.visibility = View.VISIBLE
-                errorLayout.visibility = View.GONE
+                mBinding.root.visibility = View.GONE
+                contentBinding.nullLayout.visibility = View.VISIBLE
+                contentBinding.errorLayout.visibility = View.GONE
             }
             PageState.ERROR -> {
-                dataLayout.visibility = View.GONE
-                nullLayout.visibility = View.GONE
-                errorLayout.visibility = View.VISIBLE
+                mBinding.root.visibility = View.GONE
+                contentBinding.nullLayout.visibility = View.GONE
+                contentBinding.errorLayout.visibility = View.VISIBLE
             }
             PageState.DATA -> {
-                dataLayout.visibility = View.VISIBLE
-                nullLayout.visibility = View.GONE
-                errorLayout.visibility = View.GONE
+                mBinding.root.visibility = View.VISIBLE
+                contentBinding.nullLayout.visibility = View.GONE
+                contentBinding.errorLayout.visibility = View.GONE
             }
         }
     }

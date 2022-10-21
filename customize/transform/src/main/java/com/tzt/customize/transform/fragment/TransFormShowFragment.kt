@@ -2,14 +2,13 @@ package com.tzt.customize.transform.fragment
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.os.Bundle
+import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
+import androidx.annotation.RequiresApi
 import com.tzt.common.basedepency.BaseFragment
-import com.tzt.customize.transform.R
-import kotlinx.android.synthetic.main.fragment_transform_show.*
+import com.tzt.customize.transform.databinding.FragmentTransformShowBinding
 
 /**
  * Description:
@@ -17,19 +16,21 @@ import kotlinx.android.synthetic.main.fragment_transform_show.*
  * @author tangzhentao
  * @since 2020/5/11
  */
-class TransFormShowFragment: BaseFragment() {
+class TransFormShowFragment: BaseFragment<FragmentTransformShowBinding>() {
     private lateinit var animatorSet: AnimatorSet
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_transform_show
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentTransformShowBinding.inflate(inflater, container, false)
 
+    @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
     override fun initData() {
-        val rightAnimator = ObjectAnimator.ofFloat(fbavFlip, "degreeRightY", 0f, -45f)
+        val rightAnimator = ObjectAnimator.ofFloat(binding.fbavFlip, "degreeRightY", 0f, -45f)
         rightAnimator.duration = 1000
-        val canvasAnimator = ObjectAnimator.ofFloat(fbavFlip, "degreeCanvas", 0f, 270f)
+        val canvasAnimator = ObjectAnimator.ofFloat(binding.fbavFlip, "degreeCanvas", 0f, 270f)
         canvasAnimator.duration = 800
-        val leftAnimator = ObjectAnimator.ofFloat(fbavFlip, "degreeLeftY", 0f, 45f)
+        val leftAnimator = ObjectAnimator.ofFloat(binding.fbavFlip, "degreeLeftY", 0f, 45f)
         leftAnimator.duration = 1000
         animatorSet = AnimatorSet().apply {
             interpolator = LinearInterpolator()
@@ -38,12 +39,12 @@ class TransFormShowFragment: BaseFragment() {
     }
 
     override fun bindListener() {
-        btnRotate.setOnClickListener {
-            ravRotate.startAnimatior()
+        binding.btnRotate.setOnClickListener {
+            binding.ravRotate.startAnimatior()
         }
 
-        btnFlipBorad.setOnClickListener {
-            fbavFlip.reset()
+        binding.btnFlipBorad.setOnClickListener {
+            binding.fbavFlip.reset()
             animatorSet.start()
         }
     }

@@ -5,12 +5,12 @@ import com.tzt.common.basedepency.dpToPx
 
 
 /**
- * Description:
+ * Description: 标题栏参数
  *
  * @author tangzhentao
  * @since 2020/5/15
  */
-class ToobarParams {
+class ToolbarParams {
 
     companion object {
         private val defaultColor = Color.parseColor("#1E90FF")

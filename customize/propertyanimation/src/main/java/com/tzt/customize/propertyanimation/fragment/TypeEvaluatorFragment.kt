@@ -5,13 +5,10 @@ import android.animation.TypeEvaluator
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.PointF
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.tzt.common.basedepency.BaseFragment
-import com.tzt.customize.propertyanimation.R
-import kotlinx.android.synthetic.main.fragment_type_evaluator.*
+import com.tzt.customize.propertyanimation.databinding.FragmentTypeEvaluatorBinding
 
 
 /**
@@ -20,31 +17,31 @@ import kotlinx.android.synthetic.main.fragment_type_evaluator.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class TypeEvaluatorFragment: BaseFragment() {
+class TypeEvaluatorFragment: BaseFragment<FragmentTypeEvaluatorBinding>() {
     private lateinit var colorSystemAnimator: ObjectAnimator
     private lateinit var colorCustomAnimator: ObjectAnimator
     private lateinit var pointAnimator: ObjectAnimator
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_type_evaluator
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentTypeEvaluatorBinding.inflate(inflater, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
-        colorSystemAnimator = ObjectAnimator.ofArgb(cpvSystem, "color", Color.parseColor("#ffff0000"), Color.parseColor("#ff00ff00")).apply {
+        colorSystemAnimator = ObjectAnimator.ofArgb(binding.cpvSystem, "color", Color.parseColor("#ffff0000"), Color.parseColor("#ff00ff00")).apply {
             duration = 2000
         }
-        colorCustomAnimator = ObjectAnimator.ofObject(cpvCustom, "color", ColorEvaluator(), Color.parseColor("#ffff0000"), Color.parseColor("#ff00ff00")).apply {
+        colorCustomAnimator = ObjectAnimator.ofObject(binding.cpvCustom, "color", ColorEvaluator(), Color.parseColor("#ffff0000"), Color.parseColor("#ff00ff00")).apply {
             duration = 2000
         }
-        pointAnimator = ObjectAnimator.ofObject(ppvCustom, "position", PointFEvaluator(), PointF(0f, 0f), PointF(1f, 1f)).apply {
+        pointAnimator = ObjectAnimator.ofObject(binding.ppvCustom, "position", PointFEvaluator(), PointF(0f, 0f), PointF(1f, 1f)).apply {
             duration = 2000
         }
-
     }
 
     override fun bindListener() {
-        btnAnimate.setOnClickListener {
+        binding.btnAnimate.setOnClickListener {
             colorSystemAnimator.start()
             colorCustomAnimator.start()
             pointAnimator.start()

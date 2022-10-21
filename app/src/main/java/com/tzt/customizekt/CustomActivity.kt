@@ -1,16 +1,15 @@
 package com.tzt.customizekt
 
+import android.annotation.SuppressLint
 import android.view.*
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.tzt.common.basedepency.base.BaseActivity
+import com.tzt.customizekt.databinding.ActivityCustomBinding
 import com.tzt.customizekt.fragment.ActionFragment
 import com.tzt.customizekt.fragment.CustomizeFragment
 import com.tzt.customizekt.fragment.MyFragment
-import kotlinx.android.synthetic.main.activity_custom.*
 
 
 /**
@@ -19,71 +18,66 @@ import kotlinx.android.synthetic.main.activity_custom.*
  * @author tangzhentao
  * @since 2020/4/29
  */
-class CustomActivity: BaseActivity() {
-    private val fragmengList = ArrayList<Fragment>()
+class CustomActivity: BaseActivity<ActivityCustomBinding>() {
+    private val fragmentList = ArrayList<Fragment>()
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_custom
+    private val callback = object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            mBinding.tvTitle.text = if (position == 0) "UI效果" else if (position == 1)"自定义View详解" else "关于我"
+            mBinding.bnvTab.selectedItemId = if (position == 0) R.id.action else if (position == 1) R.id.customize else R.id.my
+        }
     }
 
-    override fun initData() {
-        tvTitle.text = "UI效果"
+    override fun layoutBinding() = ActivityCustomBinding.inflate(layoutInflater)
 
-        fragmengList.apply {
+    @SuppressLint("SetTextI18n")
+    override fun initData() {
+        mBinding.tvTitle.text = "UI效果"
+
+        fragmentList.apply {
             add(ActionFragment())
             add(CustomizeFragment())
             add(MyFragment())
         }
 
-        customVp.adapter = PageAdapter(supportFragmentManager)
+        mBinding.customVp.adapter = PageAdapter()
 
         TipsDialog().show(supportFragmentManager, "TipsDialog")
     }
 
+    @SuppressLint("SetTextI18n")
     override fun bindListener() {
-        customVp.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
-            override fun onPageScrollStateChanged(state: Int) {
+        mBinding.apply {
+            customVp.registerOnPageChangeCallback(callback)
 
-            }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-
-            }
-
-            override fun onPageSelected(position: Int) {
-                tvTitle.text = if (position == 0) "UI效果" else if (position == 1)"自定义View详解" else "关于我"
-                bnvTab.selectedItemId = if (position == 0) R.id.action else if (position == 1) R.id.customize else R.id.my
-            }
-
-        })
-
-        bnvTab.setOnNavigationItemSelectedListener { item: MenuItem ->
-            when (item.itemId) {
-                R.id.action -> {
-                    tvTitle.text = "UI效果"
-                    customVp.setCurrentItem(0, true)
+            bnvTab.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.action -> {
+                        tvTitle.text = "UI效果"
+                        customVp.setCurrentItem(0, true)
+                    }
+                    R.id.customize -> {
+                        tvTitle.text = "自定义View详解"
+                        customVp.setCurrentItem(1, true)
+                    }
+                    R.id.my -> {
+                        tvTitle.text = "关于我"
+                        customVp.setCurrentItem(2, true)
+                    }
                 }
-                R.id.customize -> {
-                    tvTitle.text = "自定义View详解"
-                    customVp.setCurrentItem(1, true)
-                }
-                R.id.my -> {
-                    tvTitle.text = "关于我"
-                    customVp.setCurrentItem(2, true)
-                }
+                true
             }
-
-            true
         }
     }
 
-    inner class PageAdapter(private val fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager) {
-        override fun getItem(position: Int) = fragmengList[position]
+    override fun onDestroy() {
+        super.onDestroy()
+        mBinding.customVp.unregisterOnPageChangeCallback(callback)
+    }
 
-        override fun getCount() = fragmengList.size
+    inner class PageAdapter: FragmentStateAdapter(this) {
+        override fun getItemCount() = fragmentList.size
+
+        override fun createFragment(position: Int) = fragmentList[position]
     }
 }

@@ -1,7 +1,9 @@
 package com.tzt.customize.paint.fragment.color
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.tzt.common.basedepency.BaseFragment
-import com.tzt.customize.paint.R
+import com.tzt.customize.paint.databinding.FragmentPaintColorBinding
 
 /**
  * Description:颜色color
@@ -9,7 +11,10 @@ import com.tzt.customize.paint.R
  * @author tangzhentao
  * @since 2020/5/6
  */
-class ColorFragment : BaseFragment() {
+class ColorFragment : BaseFragment<FragmentPaintColorBinding>() {
 
-    override fun layoutResID() = R.layout.fragment_paint_color
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentPaintColorBinding.inflate(inflater, container, false)
 }

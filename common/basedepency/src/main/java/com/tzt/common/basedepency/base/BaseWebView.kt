@@ -1,9 +1,8 @@
 package com.tzt.common.basedepency.base
 
 import android.annotation.SuppressLint
-import com.tzt.common.basedepency.R
-import com.tzt.common.basedepency.widget.ToobarParams
-import kotlinx.android.synthetic.main.activity_webview.*
+import com.tzt.common.basedepency.databinding.ActivityWebviewBinding
+import com.tzt.common.basedepency.widget.ToolbarParams
 
 
 /**
@@ -12,34 +11,22 @@ import kotlinx.android.synthetic.main.activity_webview.*
  * @author tangzhentao
  * @since 2020/5/23
  */
-class BaseWebView: BaseActivity() {
+class BaseWebView: BaseActivity<ActivityWebviewBinding>() {
     companion object {
         const val LOAD_URL = "load_url"
         const val TITLE = "title"
     }
 
-    override fun getToobarParams(): ToobarParams? {
-        return ToobarParams(
-            createFinisIcon(),
-            ""
-        )
-    }
+    override fun getToolbarParams() = ToolbarParams(createFinisIcon(), "")
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_webview
-    }
+    override fun layoutBinding() = ActivityWebviewBinding.inflate(layoutInflater, null, false)
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initData() {
-        webView.settings.javaScriptEnabled = true
-
-        intent.getStringExtra(LOAD_URL)?.let {
-            webView.loadUrl(it)
+        mBinding.apply {
+            webView.settings.javaScriptEnabled = true
+            intent.getStringExtra(LOAD_URL)?.let { webView.loadUrl(it) }
+            intent.getStringExtra(TITLE)?.let { toolbar?.setTitle(it) }
         }
-
-        intent.getStringExtra(TITLE)?.let {
-            toobar.setTitle(it)
-        }
-
     }
 }

@@ -1,7 +1,10 @@
 package com.tzt.custom.canvas.fragment
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.tzt.common.basedepency.BaseFragment
 import com.tzt.custom.canvas.R
+import com.tzt.custom.canvas.databinding.FragmentVelocityTrackerBinding
 
 
 /**
@@ -10,8 +13,10 @@ import com.tzt.custom.canvas.R
  * @author tangzhentao
  * @since 2020/5/27
  */
-class VelocityTrackerFragment: BaseFragment() {
-    override fun layoutResID(): Int {
-        return R.layout.fragment_velocity_tracker
-    }
+class VelocityTrackerFragment: BaseFragment<FragmentVelocityTrackerBinding>() {
+
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentVelocityTrackerBinding.inflate(inflater, container, false)
 }

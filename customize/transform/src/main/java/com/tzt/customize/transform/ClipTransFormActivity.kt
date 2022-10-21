@@ -7,10 +7,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tzt.common.basedepency.PaintModel
 import com.tzt.common.basedepency.base.BaseActivity
-import com.tzt.common.basedepency.widget.ToobarParams
+import com.tzt.common.basedepency.widget.ToolbarParams
+import com.tzt.customize.transform.databinding.ActivityClipTransformBinding
 import com.tzt.customize.transform.fragment.ClipTransFormFragment
 import com.tzt.customize.transform.fragment.TransFormShowFragment
-import kotlinx.android.synthetic.main.activity_clip_transform.*
 
 
 /**
@@ -19,22 +19,18 @@ import kotlinx.android.synthetic.main.activity_clip_transform.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class ClipTransFormActivity: BaseActivity() {
+class ClipTransFormActivity: BaseActivity<ActivityClipTransformBinding>() {
     private var paintModels = ArrayList<PaintModel>()
 
-    override fun getToobarParams(): ToobarParams? {
-        return ToobarParams(
-            createFinisIcon(),
-            "裁剪和几何变换",
-            createOriginalIcon {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-4/")))
-            }
-        )
-    }
+    override fun layoutBinding() = ActivityClipTransformBinding.inflate(layoutInflater, null, false)
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_clip_transform
-    }
+    override fun getToolbarParams() = ToolbarParams(
+        createFinisIcon(),
+        "裁剪和几何变换",
+        createOriginalIcon {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-4/")))
+        }
+    )
 
     override fun initData() {
         paintModels.apply {
@@ -65,8 +61,8 @@ class ClipTransFormActivity: BaseActivity() {
             add(PaintModel("效果展示", TransFormShowFragment()))
         }
 
-        VpBezier.adapter = BezierAdapter(supportFragmentManager)
-        tabBezier.setupWithViewPager(VpBezier)
+        mBinding.VpBezier.adapter = BezierAdapter(supportFragmentManager)
+        mBinding.tabBezier.setupWithViewPager(mBinding.VpBezier)
     }
 
     inner class BezierAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {

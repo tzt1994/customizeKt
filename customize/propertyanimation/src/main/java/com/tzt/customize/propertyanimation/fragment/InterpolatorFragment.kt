@@ -4,7 +4,6 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.graphics.Path
 import android.os.Build
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.customize.propertyanimation.R
-import kotlinx.android.synthetic.main.fragment_interpolator.*
+import com.tzt.customize.propertyanimation.databinding.FragmentInterpolatorBinding
 
 
 /**
@@ -28,14 +27,15 @@ import kotlinx.android.synthetic.main.fragment_interpolator.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class InterpolatorFragment: BaseFragment() {
+class InterpolatorFragment: BaseFragment<FragmentInterpolatorBinding>() {
     private lateinit var animator: ObjectAnimator
 
     private val list = arrayListOf<Interpolator>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_interpolator
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentInterpolatorBinding.inflate(inflater, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
@@ -60,20 +60,20 @@ class InterpolatorFragment: BaseFragment() {
             add(FastOutSlowInInterpolator())
             add(LinearOutSlowInInterpolator())
         }
-        animator = ObjectAnimator.ofFloat(ivDuration, "translationX", 0f, 600f).apply {
+        animator = ObjectAnimator.ofFloat(binding.ivDuration, "translationX", 0f, 600f).apply {
             repeatCount = 0
             duration = 1000
             interpolator = list[0]
         }
-        btnInterpolator.text = animator.interpolator.javaClass.simpleName
+        binding.btnInterpolator.text = animator.interpolator.javaClass.simpleName
     }
 
     override fun bindListener() {
-        btnAnimate.setOnClickListener {
+        binding.btnAnimate.setOnClickListener {
             animator.start()
         }
 
-        btnInterpolator.setOnClickListener {
+        binding.btnInterpolator.setOnClickListener {
             showInterpolatorView(it)
         }
     }
@@ -90,7 +90,7 @@ class InterpolatorFragment: BaseFragment() {
         adapter.onItemClickListener =  {
             popupWindow.dismiss()
             animator.interpolator = it
-            btnInterpolator.text = it.javaClass.simpleName
+            binding.btnInterpolator.text = it.javaClass.simpleName
         }
         view.adapter = adapter
         popupWindow.contentView = view

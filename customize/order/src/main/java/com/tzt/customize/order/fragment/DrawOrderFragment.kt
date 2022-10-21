@@ -3,21 +3,22 @@ package com.tzt.customize.order.fragment
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.PaintItemModel
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.customize.order.R
+import com.tzt.customize.order.databinding.FragmentDrawOrderBinding
 import com.tzt.customize.order.widget.*
-import kotlinx.android.synthetic.main.fragment_draw_order.*
 
 
 /**
@@ -26,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_draw_order.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class DrawOrderFragment: BaseFragment() {
+class DrawOrderFragment: BaseFragment<FragmentDrawOrderBinding>() {
     companion object {
         const val SUPER_ONDRAW = 1
         const val DISPATCH_DRAW = 2
@@ -35,14 +36,16 @@ class DrawOrderFragment: BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_draw_order
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentDrawOrderBinding.inflate(inflater, container, false)
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
     override fun initData() {
         val effect = arguments?.getInt("draw_order_type", -1)
-        titleTv.visibility = View.GONE
+        binding.titleTv.visibility = View.GONE
         mList.clear()
         effect?.let {
             when (it) {
@@ -107,10 +110,10 @@ class DrawOrderFragment: BaseFragment() {
             }
         }
 
-        recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
+        binding.recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerShader.adapter = EffectAdapter()
+        binding.recyclerShader.adapter = EffectAdapter()
     }
 
     inner class EffectAdapter: RecyclerView.Adapter<EffectAdapter.ShaderViewHolder>() {

@@ -7,11 +7,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tzt.common.basedepency.CanvasDrawModel
 import com.tzt.common.basedepency.base.BaseActivity
-import com.tzt.common.basedepency.widget.ToobarParams
+import com.tzt.common.basedepency.widget.ToolbarParams
 import com.tzt.custom.canvas.PageFragment
 import com.tzt.custom.canvas.R
-import kotlinx.android.synthetic.main.activity_canvas_draw.*
-
+import com.tzt.custom.canvas.databinding.ActivityCanvasDrawBinding
 
 /**
  * Description:绘制api接口
@@ -19,23 +18,19 @@ import kotlinx.android.synthetic.main.activity_canvas_draw.*
  * @author tangzhentao
  * @since 2020/4/26
  */
-class CanvasDrawActivity: BaseActivity() {
+class CanvasDrawActivity: BaseActivity<ActivityCanvasDrawBinding>() {
 
     private var pageModelList = ArrayList<CanvasDrawModel>()
 
-    override fun getToobarParams(): ToobarParams? {
-        return ToobarParams(
-            createFinisIcon(),
-            "drawXXX()",
-            createOriginalIcon {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-1/")))
-            }
-        )
-    }
+    override fun getToolbarParams() = ToolbarParams(
+        createFinisIcon(),
+        "drawXXX()",
+        createOriginalIcon {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://hencoder.com/ui-1-1/")))
+        }
+    )
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_canvas_draw
-    }
+    override fun layoutBinding() = ActivityCanvasDrawBinding.inflate(layoutInflater, null, false)
 
     override fun initData() {
         pageModelList.apply {
@@ -84,8 +79,8 @@ class CanvasDrawActivity: BaseActivity() {
             ))
         }
 
-        viewPage.adapter = PageAdapter(supportFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-        tabLayout.setupWithViewPager(viewPage)
+        mBinding.viewPage.adapter = PageAdapter(supportFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        mBinding.tabLayout.setupWithViewPager(mBinding.viewPage)
     }
 
     inner class PageAdapter(fragmentManager: FragmentManager, behavior: Int): FragmentPagerAdapter(fragmentManager, behavior) {

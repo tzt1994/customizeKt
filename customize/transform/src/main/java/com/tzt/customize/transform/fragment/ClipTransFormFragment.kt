@@ -2,7 +2,6 @@ package com.tzt.customize.transform.fragment
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +13,11 @@ import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.PaintItemModel
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.customize.transform.R
+import com.tzt.customize.transform.databinding.FragmentClipTransformBinding
 import com.tzt.customize.transform.widget.CameraTransFormView
 import com.tzt.customize.transform.widget.CanvasTransFormView
 import com.tzt.customize.transform.widget.ClipView
 import com.tzt.customize.transform.widget.MatrixTransFormView
-import kotlinx.android.synthetic.main.fragment_clip_transform.*
 
 
 /**
@@ -27,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_clip_transform.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class ClipTransFormFragment: BaseFragment() {
+class ClipTransFormFragment: BaseFragment<FragmentClipTransformBinding>() {
     companion object {
         const val CLIP = 0
         const val CANVAS_TRANSFORM = 1
@@ -38,14 +37,15 @@ class ClipTransFormFragment: BaseFragment() {
     private val mList = ArrayList<PaintItemModel>()
 
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_clip_transform
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentClipTransformBinding.inflate(inflater, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
         val effect = arguments?.getInt("clip_transform_type", -1)
-        titleTv.visibility = View.GONE
+        binding.titleTv.visibility = View.GONE
         mList.clear()
         effect?.let {
             when (it) {
@@ -130,14 +130,15 @@ class ClipTransFormFragment: BaseFragment() {
             }
         }
 
-        recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
+        binding.recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerShader.adapter = EffectAdapter()
+        binding.recyclerShader.adapter = EffectAdapter()
     }
 
     override fun bindListener() {
-        recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            @SuppressLint("SetTextI18n")
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
@@ -146,16 +147,16 @@ class ClipTransFormFragment: BaseFragment() {
                     val model = mList[position]
                     when {
                         model.title.contains("strokeWidth") -> {
-                            titleTv.text = "线条宽度\nstrokeWidth = Float"
+                            binding.titleTv.text = "线条宽度\nstrokeWidth = Float"
                         }
                         model.title.contains("Paint.Cap") -> {
-                            titleTv.text = "线头形状\nstrokeCap = Paint.Cap"
+                            binding.titleTv.text = "线头形状\nstrokeCap = Paint.Cap"
                         }
                         model.title.contains("Paint.Join") -> {
-                            titleTv.text = "拐角的形状\nstrokeJoin = Paint.Join"
+                            binding.titleTv.text = "拐角的形状\nstrokeJoin = Paint.Join"
                         }
                         model.title.contains("strokeMiter") -> {
-                            titleTv.text = "MITER 型拐角的延长线的最大值\nstrokeMiter = Float"
+                            binding.titleTv.text = "MITER 型拐角的延长线的最大值\nstrokeMiter = Float"
                         }
                     }
                 }

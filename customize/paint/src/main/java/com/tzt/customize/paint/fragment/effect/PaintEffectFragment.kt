@@ -5,7 +5,6 @@ import android.graphics.BlurMaskFilter
 import android.graphics.Color
 import android.graphics.DashPathEffect
 import android.graphics.Paint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,11 +18,12 @@ import com.tzt.common.basedepency.PaintItemModel
 import com.tzt.common.basedepency.angleByMiter
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.customize.paint.R
+import com.tzt.customize.paint.databinding.FragmentPaintCommonBinding
 import com.tzt.customize.paint.widget.effect.*
+import com.tzt.customize.paint.widget.effect.patheffect.PathDashPathEffectView
 import com.tzt.studykt.customView.paint.widget.effect.maskfilter.BlurMaskFilterView
 import com.tzt.studykt.customView.paint.widget.effect.maskfilter.EmbossMaskFilterView
 import com.tzt.studykt.customView.paint.widget.effect.patheffect.*
-import kotlinx.android.synthetic.main.fragment_paint_common.*
 
 
 /**
@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.fragment_paint_common.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class PaintEffectFragment: BaseFragment() {
+class PaintEffectFragment: BaseFragment<FragmentPaintCommonBinding>() {
     companion object {
         const val ANTI_ALIAS = 0
         const val STYLE = 1
@@ -45,9 +45,10 @@ class PaintEffectFragment: BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_paint_common
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentPaintCommonBinding.inflate(inflater, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
@@ -57,7 +58,7 @@ class PaintEffectFragment: BaseFragment() {
         effect?.let {
             when (it) {
                 ANTI_ALIAS -> {
-                    titleTv.text = "抗锯齿效果\nPaint.isAntiAlias = Boolean\nPaint(Paint.ANTI_ALIAS_FLAG)"
+                    binding.titleTv.text = "抗锯齿效果\nPaint.isAntiAlias = Boolean\nPaint(Paint.ANTI_ALIAS_FLAG)"
                     mList.apply {
                         add(PaintItemModel("开启",
                             AntiAliasView(
@@ -74,7 +75,7 @@ class PaintEffectFragment: BaseFragment() {
                     }
                 }
                 STYLE -> {
-                    titleTv.text = "Paint.Style\n设置图形是线条风格还是填充风格的\nPaint.style = Paint.Style"
+                    binding.titleTv.text = "Paint.Style\n设置图形是线条风格还是填充风格的\nPaint.style = Paint.Style"
                     mList.apply {
                         add(PaintItemModel("Paint.Style.FILL",
                             StyleView(
@@ -97,7 +98,7 @@ class PaintEffectFragment: BaseFragment() {
                     }
                 }
                 LINE_SHAPE -> {
-                    titleTv.text = "线条宽度\nstrokeWidth = Float"
+                    binding.titleTv.text = "线条宽度\nstrokeWidth = Float"
                     mList.apply {
                         add(PaintItemModel("线宽 strokeWidth",
                             LineShapeView(
@@ -147,7 +148,7 @@ class PaintEffectFragment: BaseFragment() {
                     }
                 }
                 COLOR_OPTIMIZATION -> {
-                    titleTv.text = "色彩优化\nsetDither(boolean dither)\nsetFilterBitmap(boolean filter)"
+                    binding.titleTv.text = "色彩优化\nsetDither(boolean dither)\nsetFilterBitmap(boolean filter)"
                     mList.apply {
                         val dither = ImageView(mContext)
                         dither.setImageResource(R.mipmap.dither)
@@ -170,7 +171,7 @@ class PaintEffectFragment: BaseFragment() {
                     }
                 }
                 PATH_EFFECT -> {
-                    titleTv.text = "使用 PathEffect 来给图形的轮廓设置效果\n对 Canvas 所有的图形绘制有效"
+                    binding.titleTv.text = "使用 PathEffect 来给图形的轮廓设置效果\n对 Canvas 所有的图形绘制有效"
                     mList.apply {
                         add(PaintItemModel("CornerPathEffect 所有的拐角边圆角\nCornerPathEffect(float radius)\nradius: 圆角的半径, 示例20f",
                             CornerPathEffectView(mContext,20f)))
@@ -180,7 +181,8 @@ class PaintEffectFragment: BaseFragment() {
                             DashPathEffectView(mContext, floatArrayOf(10f, 5f), 5f)))
                         add(PaintItemModel("PathDashPathEffect 使用一个 Path 来绘制「虚线」\nPathDashPathEffect(Path shape, float advance, float phase, PathDashPathEffect.Style style)\n" +
                                 "shape: 用来绘制的path\nadvance: 两个相邻shape之间的间隔\nphase: 虚线的偏移\nstyle:用来指定拐弯改变的时候 shape 的转换方式",
-                            PathDashPathEffectView(mContext)))
+                            PathDashPathEffectView(mContext)
+                        ))
                         add(PaintItemModel("SumPathEffect 组合效果,分别按照两种 PathEffect 分别对目标进行绘制\nSumPathEffect(PathEffect first, PathEffect second)\n" +
                                 "first: 第二种PathEffect\nsecond: 第二种PathEffect",
                             SumPathEffectView(mContext)))
@@ -191,7 +193,7 @@ class PaintEffectFragment: BaseFragment() {
                     }
                 }
                 MASK_FILTER -> {
-                    titleTv.text = "MaskFilter 设置的是在绘制层上方的附加效果,基于整个画面来进行过滤"
+                    binding.titleTv.text = "MaskFilter 设置的是在绘制层上方的附加效果,基于整个画面来进行过滤"
                     mList.apply {
                         add(PaintItemModel("BlurMaskFilter 模糊效果\nBlurMaskFilter(float radius, BlurMaskFilter.Blur style)\nradius: 模糊的范围\nstyle: 模糊的类型" +
                                 "\nNORMAL 内外都模糊绘制",
@@ -209,7 +211,7 @@ class PaintEffectFragment: BaseFragment() {
                     }
                 }
                 GET_PATH -> {
-                    titleTv.text = "根据paint的设置，计算出绘制Path或文字时的实际Path"
+                    binding.titleTv.text = "根据paint的设置，计算出绘制Path或文字时的实际Path"
                     mList.apply {
                         add(PaintItemModel("getFillPath(Path src, Path dst)\n" +
                                 "src: 原Path\ndst: 实际Path的保存位置\n" +
@@ -229,14 +231,14 @@ class PaintEffectFragment: BaseFragment() {
             }
         }
 
-        recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
+        binding.recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerShader.adapter = EffectAdapter()
+        binding.recyclerShader.adapter = EffectAdapter()
     }
 
     override fun bindListener() {
-        recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
@@ -245,16 +247,16 @@ class PaintEffectFragment: BaseFragment() {
                     val model = mList[position]
                     when {
                         model.title.contains("strokeWidth") -> {
-                            titleTv.text = "线条宽度\nstrokeWidth = Float"
+                            binding.titleTv.text = "线条宽度\nstrokeWidth = Float"
                         }
                         model.title.contains("Paint.Cap") -> {
-                            titleTv.text = "线头形状\nstrokeCap = Paint.Cap"
+                            binding.titleTv.text = "线头形状\nstrokeCap = Paint.Cap"
                         }
                         model.title.contains("Paint.Join") -> {
-                            titleTv.text = "拐角的形状\nstrokeJoin = Paint.Join"
+                            binding.titleTv.text = "拐角的形状\nstrokeJoin = Paint.Join"
                         }
                         model.title.contains("strokeMiter") -> {
-                            titleTv.text = "MITER 型拐角的延长线的最大值\nstrokeMiter = Float"
+                            binding.titleTv.text = "MITER 型拐角的延长线的最大值\nstrokeMiter = Float"
                         }
                     }
                 }

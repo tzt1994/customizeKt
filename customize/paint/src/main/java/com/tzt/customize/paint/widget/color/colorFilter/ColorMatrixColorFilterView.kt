@@ -107,21 +107,22 @@ class ColorMatrixColorFilterView: View{
                 postInvalidate()
             }
             addListener(object : Animator.AnimatorListener{
-                override fun onAnimationRepeat(animation: Animator?) {
-
-                }
-
-                override fun onAnimationEnd(animation: Animator?) {
-
-                }
-
-                override fun onAnimationCancel(animation: Animator?) {
-
-                }
-
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                     startMatrix = oldMatrix.clone()
                 }
+
+                override fun onAnimationEnd(animation: Animator) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onAnimationCancel(animation: Animator) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onAnimationRepeat(animation: Animator) {
+                    TODO("Not yet implemented")
+                }
+
             })
         }
     }

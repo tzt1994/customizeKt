@@ -1,4 +1,4 @@
-package com.tzt.studykt.customView.paint.widget.effect.patheffect
+package com.tzt.customize.paint.widget.effect.patheffect
 
 import android.annotation.SuppressLint
 import android.content.Context

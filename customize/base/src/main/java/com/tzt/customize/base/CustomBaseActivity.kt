@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.tzt.common.basedepency.BaseModel
 import com.tzt.common.basedepency.base.BaseActivity
-import com.tzt.common.basedepency.widget.ToobarParams
+import com.tzt.common.basedepency.widget.ToolbarParams
+import com.tzt.customize.base.databinding.ActivityCustomBaseBinding
 import com.tzt.customize.base.fragment.AngleFragment
 import com.tzt.customize.base.fragment.ColorFragment
 import com.tzt.customize.base.fragment.CoordinateFragment
-import kotlinx.android.synthetic.main.activity_custom_base.*
 
 
 /**
@@ -19,29 +19,25 @@ import kotlinx.android.synthetic.main.activity_custom_base.*
  * @author tangzhentao
  * @since 2020/5/21
  */
-class CustomBaseActivity: BaseActivity() {
+class CustomBaseActivity: BaseActivity<ActivityCustomBaseBinding>() {
     private val modelList = ArrayList<BaseModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.activity_custom_base
-    }
+    override fun layoutBinding() = ActivityCustomBaseBinding.inflate(layoutInflater, null, false)
 
-    override fun getToobarParams(): ToobarParams? {
-        return ToobarParams(
-            createFinisIcon(),
-            "自定义View基础",
-            createOriginalIcon {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
-                    when (modelList[vpBase.currentItem].fragment) {
-                        is CoordinateFragment -> "http://www.gcssloop.com/customview/CoordinateSystem"
-                        is AngleFragment -> "http://www.gcssloop.com/customview/AngleAndRadian"
-                        is ColorFragment -> "http://www.gcssloop.com/customview/Color"
-                        else -> ""
-                    }
-                )))
-            }
-        )
-    }
+    override fun getToolbarParams() = ToolbarParams(
+        createFinisIcon(),
+        "自定义View基础",
+        createOriginalIcon {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
+                when (modelList[mBinding.vpBase.currentItem].fragment) {
+                    is CoordinateFragment -> "http://www.gcssloop.com/customview/CoordinateSystem"
+                    is AngleFragment -> "http://www.gcssloop.com/customview/AngleAndRadian"
+                    is ColorFragment -> "http://www.gcssloop.com/customview/Color"
+                    else -> ""
+                }
+            )))
+        }
+    )
 
     override fun initData() {
         modelList.apply {
@@ -50,8 +46,8 @@ class CustomBaseActivity: BaseActivity() {
             add(BaseModel("颜色", ColorFragment()))
         }
 
-        vpBase.adapter = BaseAdapter(supportFragmentManager)
-        tabBase.setupWithViewPager(vpBase)
+        mBinding.vpBase.adapter = BaseAdapter(supportFragmentManager)
+        mBinding.tabBase.setupWithViewPager(mBinding.vpBase)
     }
 
     inner class BaseAdapter(fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {

@@ -15,13 +15,13 @@ import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.PaintItemModel
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.customize.paint.R
+import com.tzt.customize.paint.databinding.FragmentPaintCommonBinding
 import com.tzt.customize.paint.widget.color.ComposeView
 import com.tzt.customize.paint.widget.color.colorFilter.LightingColorFilterView
 import com.tzt.customize.paint.widget.color.colorFilter.PorterDuffColorFilterView
 import com.tzt.customize.paint.widget.color.shader.BitmapShaderView
 import com.tzt.customize.paint.widget.color.shader.ComposeShaderView
 import com.tzt.studykt.customView.paint.widget.color.shader.*
-import kotlinx.android.synthetic.main.fragment_paint_common.*
 
 /**
  * Description:颜色相关
@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.fragment_paint_common.*
  * @author tangzhentao
  * @since 2020/5/6
  */
-class PaintColorFragment : BaseFragment() {
+class PaintColorFragment : BaseFragment<FragmentPaintCommonBinding>() {
     companion object {
         const val SHADER_TYPE_BASE = 0
         const val SHADER_TYPE_BITMAP = 1
@@ -39,9 +39,10 @@ class PaintColorFragment : BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_paint_common
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentPaintCommonBinding.inflate(inflater, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
@@ -51,7 +52,7 @@ class PaintColorFragment : BaseFragment() {
         bundle?.let {
             when(it) {
                 SHADER_TYPE_BASE -> {
-                    titleTv.text = "LinearGradient 线性渐变\n 设置两个点和两种颜色，以这两个点作为端点，使用两种颜色的渐变来绘制颜色"
+                    binding.titleTv.text = "LinearGradient 线性渐变\n 设置两个点和两种颜色，以这两个点作为端点，使用两种颜色的渐变来绘制颜色"
                     mList.apply {
                         // 线性渐变
                         add(PaintItemModel("LinearGradient  构造函数：\n" +
@@ -110,7 +111,7 @@ class PaintColorFragment : BaseFragment() {
                     }
                 }
                 SHADER_TYPE_BITMAP -> {
-                    titleTv.text = "BitmapShader 图片着色器 \n用Bitmap的像素来做为图片或文字的填充"
+                    binding.titleTv.text = "BitmapShader 图片着色器 \n用Bitmap的像素来做为图片或文字的填充"
                     mList.apply {
                         add(PaintItemModel("BitmapShader 构造函数:\n" +
                                 "BitmapShader(Bitmap bitmap, Shader.TileMode tileX, Shader.TileMode tileY)\n\n" +
@@ -146,7 +147,7 @@ class PaintColorFragment : BaseFragment() {
                     }
                 }
                 SHADER_TYPE_COMPOSE -> {
-                    titleTv.text = "ComposeShader 混合着色器 \n所谓混合，就是把两个 Shader 一起使用。"
+                    binding.titleTv.text = "ComposeShader 混合着色器 \n所谓混合，就是把两个 Shader 一起使用。"
                     mList.apply {
                         add(
                             PaintItemModel("构造函数:\n" +
@@ -288,7 +289,7 @@ class PaintColorFragment : BaseFragment() {
                     }
                 }
                 COLOR_FILTER -> {
-                    titleTv.text = "LightingColorFilter\n用来模拟简单的光照效果的"
+                    binding.titleTv.text = "LightingColorFilter\n用来模拟简单的光照效果的"
                     mList.apply {
                         add(PaintItemModel("构造函数\n" +
                                 "LightingColorFilter(@ColorInt int mul, @ColorInt int add)\n" +
@@ -415,14 +416,14 @@ class PaintColorFragment : BaseFragment() {
             }
         }
 
-        recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
+        binding.recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerShader.adapter = ShaderAdapter()
+        binding.recyclerShader.adapter = ShaderAdapter()
     }
 
     override fun bindListener() {
-        recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.recyclerShader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
@@ -430,13 +431,13 @@ class PaintColorFragment : BaseFragment() {
                 if (position >=0 && position < mList.size) {
                     val model = mList[position]
                     if (model.title.contains("LinearGradient") || (model.view != null && model.view is LinearGradientView)) {
-                        titleTv.text = "LinearGradient 线性渐变\n 设置两个点和两种颜色，以这两个点作为端点，使用两种颜色的渐变来绘制颜色"
+                        binding.titleTv.text = "LinearGradient 线性渐变\n 设置两个点和两种颜色，以这两个点作为端点，使用两种颜色的渐变来绘制颜色"
                     } else if (model.title.contains("RadialGradient") || (model.view != null && model.view is RadialGradientView)) {
-                        titleTv.text = "RadialGradient 辐射渐变\n 从中心向周围辐射状的渐变"
+                        binding.titleTv.text = "RadialGradient 辐射渐变\n 从中心向周围辐射状的渐变"
                     } else if (model.title.contains("LightingColorFilter") || (model.view != null && model.view is LightingColorFilterView)) {
-                        titleTv.text = "LightingColorFilter\n用来模拟简单的光照效果的"
+                        binding.titleTv.text = "LightingColorFilter\n用来模拟简单的光照效果的"
                     } else if (model.title.contains("PorterDuffColorFilter") || (model.view != null && model.view is PorterDuffColorFilterView)) {
-                        titleTv.text = "PorterDuffColorFilter\n使用一个指定的颜色和一种指定的 PorterDuff.Mode 来与绘制对象进行合成"
+                        binding.titleTv.text = "PorterDuffColorFilter\n使用一个指定的颜色和一种指定的 PorterDuff.Mode 来与绘制对象进行合成"
                     }
                 }
             }

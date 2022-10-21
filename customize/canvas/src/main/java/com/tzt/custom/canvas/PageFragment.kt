@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_custom_view.*
+import com.tzt.common.basedepency.BaseFragment
+import com.tzt.custom.canvas.databinding.FragmentCustomViewBinding
 import kotlin.properties.Delegates
 
 
@@ -17,7 +17,7 @@ import kotlin.properties.Delegates
  * @author tangzhentao
  * @since 2020/4/26
  */
-class PageFragment: Fragment() {
+class PageFragment: BaseFragment<FragmentCustomViewBinding>() {
     private var imageRes by Delegates.notNull<Int>()
     private var layoutRes by Delegates.notNull<Int>()
 
@@ -39,27 +39,24 @@ class PageFragment: Fragment() {
         layoutRes = arguments?.getInt("layout", 0)?: 0
     }
 
-    override fun onCreateView(
+    override fun layoutBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_custom_view, container, false)
-    }
+        container: ViewGroup?
+    ) = FragmentCustomViewBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layoutRes.let {
             if (it != 0) {
-                bootomLayout.layoutResource = layoutRes
-                bootomLayout.inflate()
+                binding.bootomLayout.layoutResource = layoutRes
+                binding.bootomLayout.inflate()
             }
         }
 
         imageRes.let {
             if (it != 0) {
-                topIv.background = ColorDrawable(Color.TRANSPARENT)
-                topIv.setImageResource(imageRes)
+                binding.topIv.background = ColorDrawable(Color.TRANSPARENT)
+                binding.topIv.setImageResource(imageRes)
             }
         }
     }

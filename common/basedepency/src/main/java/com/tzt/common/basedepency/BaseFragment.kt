@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 
 
 /**
@@ -14,8 +15,10 @@ import androidx.fragment.app.Fragment
  * @author tangzhentao
  * @since 2020/5/6
  */
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment<T: ViewBinding>: Fragment() {
     open lateinit var mContext: Context
+
+    protected lateinit var binding: T
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,7 +30,8 @@ abstract class BaseFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(layoutResID(), container, false)
+        binding = layoutBinding(inflater, container)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +44,7 @@ abstract class BaseFragment: Fragment() {
      * 布局
      * return 布局ID Int
      */
-    abstract fun layoutResID(): Int
+    abstract fun layoutBinding(inflater: LayoutInflater, container: ViewGroup?,): T
 
     /**
      * 数据初始化

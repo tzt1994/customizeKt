@@ -2,6 +2,8 @@ package com.tzt.common.basedepency
 
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewbinding.ViewBinding
 import com.tzt.common.basedepency.base.BaseActivity
 
 
@@ -12,7 +14,7 @@ import com.tzt.common.basedepency.base.BaseActivity
  * @since 2020/4/29
  */
 
-data class CustomModel(val title: String, val subTitle: String, val clazz: Class<out BaseActivity>)
+data class CustomModel(val title: String, val subTitle: String, val clazz: Class<out FragmentActivity>)
 
 data class CanvasDrawModel(val imageRes: Int, val title: String, val layoutRes: Int)
 

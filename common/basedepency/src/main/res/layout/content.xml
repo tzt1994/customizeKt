@@ -31,16 +31,4 @@
             android:textSize="24sp"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
-
-    <FrameLayout
-        android:id="@+id/dataLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ViewStub
-            android:id="@+id/viewStub"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inflatedId="@+id/viewStubId"/>
-    </FrameLayout>
 </FrameLayout>

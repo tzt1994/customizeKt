@@ -1,20 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tzt.customize.action">
 
     <application>
-        <activity android:name=".ui.ScrapingCardXfermodeActivity"
-            android:label="刮刮卡 xfermode"/>
-        <activity android:name=".ui.HeartXfermodeActivity"
-            android:label="心跳 xfermode高级UI"/>
-        <activity android:name=".ui.LeafLoadingActivity"
-            android:label="LeafLoading"/>
-        <activity android:name=".ui.ShapeShaderActivity"
-            android:label="Shape BitmapShader实现"/>
-        <activity android:name=".ui.ShapeXfermodeActivity"
-            android:label="Shape Xfermode实现"/>
-        <activity android:name=".ui.CircleImageViewActivity"
-            android:label="CircleImageView"/>
-        <activity android:name=".ui.MutipleScaleActivity"
-            android:label="多种模式刻度尺"/>
+        <activity
+            android:name=".ui.ScrapingCardXfermodeActivity"
+            android:label="刮刮卡 xfermode" />
+        <activity
+            android:name=".ui.HeartXfermodeActivity"
+            android:label="心跳 xfermode高级UI" />
+        <activity
+            android:name=".ui.LeafLoadingActivity"
+            android:label="LeafLoading" />
+        <activity
+            android:name=".ui.ShapeShaderActivity"
+            android:label="Shape BitmapShader实现" />
+        <activity
+            android:name=".ui.ShapeXfermodeActivity"
+            android:label="Shape Xfermode实现" />
+        <activity
+            android:name=".ui.CircleImageViewActivity"
+            android:label="CircleImageView" />
+        <activity
+            android:name=".ui.MutipleScaleActivity"
+            android:label="多种模式刻度尺" />
+        <activity android:name=".ui.MultiFingerlActivity"
+            android:label="多指触摸"/>
+        <activity android:name=".ui.EraserActivity"
+            android:label="橡皮"/>
+        <activity android:name=".ui.SurfaceViewActivity"
+            android:label="surface view"/>
     </application>
+
 </manifest>

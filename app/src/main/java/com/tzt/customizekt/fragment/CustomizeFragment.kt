@@ -21,7 +21,7 @@ import com.tzt.custom.canvas.ui.CanvasDrawActivity
 import com.tzt.custom.canvas.ui.ScrollerAcitvity
 import com.tzt.customize.base.ClassicProcessActivity
 import com.tzt.customize.base.CustomBaseActivity
-import kotlinx.android.synthetic.main.fragment_customize.*
+import com.tzt.customizekt.databinding.FragmentCustomizeBinding
 
 
 /**
@@ -30,12 +30,13 @@ import kotlinx.android.synthetic.main.fragment_customize.*
  * @author tangzhentao
  * @since 2020/5/14
  */
-class CustomizeFragment: BaseFragment() {
+class CustomizeFragment: BaseFragment<FragmentCustomizeBinding>() {
     private val pageList = ArrayList<CustomModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_customize
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentCustomizeBinding.inflate(inflater, container, false)
 
     override fun initData() {
         pageList.apply {
@@ -52,8 +53,8 @@ class CustomizeFragment: BaseFragment() {
             add(CustomModel("贝塞尔曲线", "贝塞尔曲线的详解", BezierActivity::class.java))
         }
 
-        recyclerCustomize.layoutManager = LinearLayoutManager(mContext)
-        recyclerCustomize.adapter = CustomAdapter()
+        binding.recyclerCustomize.layoutManager = LinearLayoutManager(mContext)
+        binding.recyclerCustomize.adapter = CustomAdapter()
     }
 
     inner class CustomAdapter: RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {

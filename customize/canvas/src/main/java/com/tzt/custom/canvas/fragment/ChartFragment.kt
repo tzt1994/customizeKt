@@ -1,14 +1,12 @@
 package com.tzt.custom.canvas.fragment
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.SeekBar
-import androidx.core.util.toRange
 import com.tzt.common.basedepency.BaseFragment
-import com.tzt.custom.canvas.R
+import com.tzt.custom.canvas.databinding.FragmentChartBinding
 import com.tzt.custom.canvas.widget.ChartView
-import kotlinx.android.synthetic.main.fragment_chart.*
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 
 /**
@@ -17,40 +15,43 @@ import kotlin.random.Random
  * @author tangzhentao
  * @since 2020/5/27
  */
-class ChartFragment: BaseFragment() {
-    override fun layoutResID(): Int {
-        return R.layout.fragment_chart
-    }
+class ChartFragment: BaseFragment<FragmentChartBinding>() {
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentChartBinding.inflate(inflater, container, false)
 
     override fun initData() {
-        tvDescrip.text = "数据量(${seekbar.progress})"
-        cvChart.setBarInfoList(getList(100))
+        binding.apply {
+            tvDescrip.text = "数据量(${seekbar.progress})"
+            cvChart.setBarInfoList(getList(100))
+        }
     }
 
     override fun bindListener() {
-        btnResetData.setOnClickListener {
-            cvChart.setBarInfoList(getList(100))
+        binding.apply {
+            btnResetData.setOnClickListener {
+                cvChart.setBarInfoList(getList(100))
+            }
+
+            btnStart.setOnClickListener {
+                cvChart.start()
+            }
+
+            seekbar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    tvDescrip.text = "数据量($progress)"
+                    cvChart.setBarInfoList(getList(progress))
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                }
+
+            })
         }
-
-        btnStart.setOnClickListener {
-            cvChart.start()
-        }
-
-        seekbar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                tvDescrip.text = "数据量($progress)"
-                cvChart.setBarInfoList(getList(progress))
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-
-        })
-
-
     }
 
     private fun getList(size: Int): ArrayList<ChartView.BarInfo> {

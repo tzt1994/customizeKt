@@ -11,7 +11,7 @@ import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.CustomModel
 import com.tzt.customize.action.ui.*
 import com.tzt.customizekt.R
-import kotlinx.android.synthetic.main.fragment_customize.*
+import com.tzt.customizekt.databinding.FragmentCustomizeBinding
 
 
 /**
@@ -20,12 +20,13 @@ import kotlinx.android.synthetic.main.fragment_customize.*
  * @author tangzhentao
  * @since 2020/5/14
  */
-class ActionFragment: BaseFragment() {
+class ActionFragment: BaseFragment<FragmentCustomizeBinding>() {
     private val uiList = ArrayList<CustomModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_customize
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentCustomizeBinding.inflate(inflater, container, false)
 
     override fun initData() {
         uiList.clear()
@@ -37,12 +38,15 @@ class ActionFragment: BaseFragment() {
             add(CustomModel("ShapeXfermodeImageView", "Xfermode实现\n(矩形或圆形，自由设置圆角或椭圆角,边框)", ShapeXfermodeActivity::class.java))
             add(CustomModel("CircleImageView", "圆形图片, 可设置边框宽度及颜色)", CircleImageViewActivity::class.java))
             add(CustomModel("MutipleScaleView", "刻度尺\n(支持规则数据和不规则数据)", MutipleScaleActivity::class.java))
+            add(CustomModel("多指触摸", "多指触摸的问题解释", MultiFingerlActivity::class.java))
+            add(CustomModel("橡皮", "橡皮擦除及多段", EraserActivity::class.java))
+            add(CustomModel("SurfaceView", "surfaceview的使用", SurfaceViewActivity::class.java))
         }
 
-        recyclerCustomize.layoutManager = LinearLayoutManager(context).apply {
+        binding.recyclerCustomize.layoutManager = LinearLayoutManager(context).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerCustomize.adapter = UIAdapter()
+        binding.recyclerCustomize.adapter = UIAdapter()
     }
 
     inner class UIAdapter: RecyclerView.Adapter<UIViewHolder>() {

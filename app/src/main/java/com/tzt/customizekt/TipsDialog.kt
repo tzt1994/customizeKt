@@ -1,6 +1,5 @@
 package com.tzt.customizekt
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.common.basedepency.screenWidth
-import kotlinx.android.synthetic.main.dialog_tips.*
+import com.tzt.customizekt.databinding.DialogTipsBinding
 
 
 /**
@@ -19,6 +18,7 @@ import kotlinx.android.synthetic.main.dialog_tips.*
  * @since 2020/5/23
  */
 class TipsDialog: DialogFragment() {
+    private lateinit var binding: DialogTipsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +29,9 @@ class TipsDialog: DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.dialog_tips, container, false)
+    ): View {
+        binding = DialogTipsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onStart() {
@@ -41,7 +42,7 @@ class TipsDialog: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btnIKnow.setOnClickListener {
+        binding.btnIKnow.setOnClickListener {
             dismiss()
         }
     }

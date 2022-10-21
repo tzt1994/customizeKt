@@ -1,12 +1,9 @@
 package com.tzt.customize.order.fragment
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.tzt.common.basedepency.BaseFragment
-import com.tzt.customize.order.R
-import kotlinx.android.synthetic.main.fragment_draw_process.*
+import com.tzt.customize.order.databinding.FragmentDrawProcessBinding
 
 
 /**
@@ -15,11 +12,12 @@ import kotlinx.android.synthetic.main.fragment_draw_process.*
  * @author tangzhentao
  * @since 2020/5/12
  */
-class DrawProcessFragment: BaseFragment() {
+class DrawProcessFragment: BaseFragment<FragmentDrawProcessBinding>() {
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_draw_process
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentDrawProcessBinding.inflate(inflater, container, false)
 
     override fun initData() {
         val dp1 = "\n一个完整的绘制过程会依次绘制以下几个内容：\n\n" +
@@ -39,11 +37,11 @@ class DrawProcessFragment: BaseFragment() {
                 "布局文件的 android:background 属性以及 Java 代码的 View.setBackgroundXxx() 方法 ）" +
                 "，而不能自定义绘制；而第 4、5 两步——滑动边缘渐变和滑动条以及前景，" +
                 "这两部分被合在一起放在了 onDrawForeground() 方法里，这个方法是可以重写的。\n"
-        tvDp1.text = dp1
+        binding.tvDp1.text = dp1
         val dp2 = "\n滑动边缘渐变和滑动条可以通过 xml 的 android:scrollbarXXX 系列属性或 Java 代码的 " +
                 "View.setXXXScrollbarXXX() 系列方法来设置；前景可以通过 xml 的 android:foreground " +
                 "属性或 Java 代码的 View.setForeground() 方法来设置。而重写 onDrawForeground() 方法，" +
                 "并在它的 super.onDrawForeground() 方法的上面或下面插入绘制代码，则可以控制绘制内容和滑动边缘渐变、滑动条以及前景的遮盖关系\n"
-        tvDp2.text = dp2
+        binding.tvDp2.text = dp2
     }
 }

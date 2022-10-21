@@ -85,14 +85,14 @@ object BezierUtils {
      * @param u 当前比例
      * @param k 阶数
      * @param p 当前点的下标
-     * @param controllPointList
+     * @param controlPointList
      */
-    fun calculatePointCoordinate(
+    private fun calculatePointCoordinate(
         type: ValueType,
         u: Float,
         k: Int,
         p: Int,
-        controllPointList: List<PointF>
+        controlPointList: List<PointF>
     ): Float {
         /**
          * 公式解说：（p表示坐标点，后面的数字只是区分）
@@ -108,11 +108,11 @@ object BezierUtils {
             var p2 = 0f
 
             if (type == ValueType.X_TYPE) {
-                p1 = controllPointList[p].x
-                p2 = controllPointList[p + 1].x
+                p1 = controlPointList[p].x
+                p2 = controlPointList[p + 1].x
             } else {
-                p1 = controllPointList[p].y
-                p2 = controllPointList[p + 1].y
+                p1 = controlPointList[p].y
+                p2 = controlPointList[p + 1].y
             }
 
             return (1 - u) * p1 + u * p2
@@ -127,7 +127,7 @@ object BezierUtils {
              * 1阶贝塞尔曲线 则为 真正的贝塞尔曲线存在的点
              */
 
-            return (1 - u) * calculatePointCoordinate(type, u, k - 1, p ,controllPointList) + u * calculatePointCoordinate(type, u, k - 1, p + 1, controllPointList)
+            return (1 - u) * calculatePointCoordinate(type, u, k - 1, p ,controlPointList) + u * calculatePointCoordinate(type, u, k - 1, p + 1, controlPointList)
         }
     }
 }

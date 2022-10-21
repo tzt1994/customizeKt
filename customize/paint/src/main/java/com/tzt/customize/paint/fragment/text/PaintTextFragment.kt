@@ -2,7 +2,6 @@ package com.tzt.customize.paint.fragment.text
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,10 @@ import com.tzt.common.basedepency.BaseFragment
 import com.tzt.common.basedepency.PaintItemModel
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.customize.paint.R
+import com.tzt.customize.paint.databinding.FragmentPaintCommonBinding
 import com.tzt.customize.paint.widget.text.DrawTextView
 import com.tzt.customize.paint.widget.text.FontTextView
 import com.tzt.customize.paint.widget.text.ShowTextView
-import kotlinx.android.synthetic.main.fragment_paint_common.*
 
 
 /**
@@ -27,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_paint_common.*
  * @author tangzhentao
  * @since 2020/5/8
  */
-class PaintTextFragment: BaseFragment() {
+class PaintTextFragment: BaseFragment<FragmentPaintCommonBinding>() {
     companion object {
         const val TEXT_STYLE = 0
         const val TEXT_EFFECT = 1
@@ -36,14 +35,15 @@ class PaintTextFragment: BaseFragment() {
 
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_paint_common
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentPaintCommonBinding.inflate(inflater, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
         val effect = arguments?.getInt("text_type", -1)
-        titleTv.visibility = View.GONE
+        binding.titleTv.visibility = View.GONE
         mList.clear()
         effect?.let {
             when (it) {
@@ -191,10 +191,10 @@ class PaintTextFragment: BaseFragment() {
             }
         }
 
-        recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
+        binding.recyclerShader.layoutManager = LinearLayoutManager(mContext).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerShader.adapter = EffectAdapter()
+        binding.recyclerShader.adapter = EffectAdapter()
     }
 
     inner class EffectAdapter: RecyclerView.Adapter<EffectAdapter.ShaderViewHolder>() {

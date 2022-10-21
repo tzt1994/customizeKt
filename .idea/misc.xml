@@ -5,6 +5,17 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.23854166666666668" />
+        <entry key="customize/path/src/main/res/layout/fragment_circle_bezier.xml" value="0.2078125" />
+        <entry key="customize/path/src/main/res/layout/fragment_multiple_bezier.xml" value="0.2078125" />
+        <entry key="customize/path/src/main/res/layout/fragment_one_bezier.xml" value="0.2078125" />
+        <entry key="customize/path/src/main/res/layout/fragment_ship_bezier.xml" value="0.2078125" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
@@ -17,7 +28,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

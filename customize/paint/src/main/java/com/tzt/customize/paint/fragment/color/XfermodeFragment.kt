@@ -15,8 +15,8 @@ import com.tzt.common.basedepency.PaintItemModel
 import com.tzt.common.basedepency.dpToPx
 import com.tzt.common.basedepency.screenWidth
 import com.tzt.customize.paint.R
+import com.tzt.customize.paint.databinding.FragmentXfermodeBinding
 import com.tzt.customize.paint.widget.color.PorterDuffXfermodeView
-import kotlinx.android.synthetic.main.fragment_xfermode.*
 
 /**
  * Description: Xfermode
@@ -24,17 +24,18 @@ import kotlinx.android.synthetic.main.fragment_xfermode.*
  * @author tangzhentao
  * @since 2020/5/6
  */
-class XfermodeFragment : BaseFragment() {
+class XfermodeFragment : BaseFragment<FragmentXfermodeBinding>() {
     private val mList = ArrayList<PaintItemModel>()
 
-    override fun layoutResID(): Int {
-        return R.layout.fragment_xfermode
-    }
+    override fun layoutBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentXfermodeBinding.inflate(inflater, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
         mList.clear()
-        tvXfermode.text = "Xfermode\n指的是你要绘制的内容和 Canvas 的目标位置的内容应该怎样结合计算出最终的颜色\n" +
+        binding.tvXfermode.text = "Xfermode\n指的是你要绘制的内容和 Canvas 的目标位置的内容应该怎样结合计算出最终的颜色\n" +
                 "唯一子类 PorterDuffXfermode,构造函数\n" +
                 "PorterDuffXfermode(model: PorterDuff.Mode)"
 
@@ -163,10 +164,10 @@ class XfermodeFragment : BaseFragment() {
             ))
         }
 
-        recyclerXfermode.layoutManager = GridLayoutManager(mContext, 4).apply {
+        binding.recyclerXfermode.layoutManager = GridLayoutManager(mContext, 4).apply {
             orientation = LinearLayoutManager.VERTICAL
         }
-        recyclerXfermode.adapter = XfermodeAdapter()
+        binding.recyclerXfermode.adapter = XfermodeAdapter()
     }
 
     inner class XfermodeAdapter: RecyclerView.Adapter<XfermodeAdapter.XfermodeViewHolder>() {
